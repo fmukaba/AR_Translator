@@ -1,67 +1,62 @@
 //
 //  ViewController.swift
-//  ImagePickerTutorial
+//  IOSTakeAndSave
 //
-//  Created by Reina S on 11/12/19.
-//  Copyright © 2019 com.test. All rights reserved.
+//  Created by Muluh Nkengla on 11/26/19.
+//  Copyright © 2019 Muluh Nkengla. All rights reserved.
 //
 
 import UIKit
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
-    //the UI image view
-    @IBOutlet var imageView: UIImageView!
-    
-    //view controller that manages system interfaces for taking pictures, recording movies, and choosing items from the user's media library.
-    let imagePicker = UIImagePickerController()
+class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate  {
 
-    
-    //action when the load image button is tapped
-    @IBAction func loadImageButtonTapped(_ sender: UIButton) {
-        
-        imagePicker.allowsEditing = false
-        
-        //getting photo from photo library
-        imagePicker.sourceType = .photoLibrary
-        
-        //present the image that is picked onto the UIimageview
-        present(imagePicker, animated: true, completion: nil)
-    }
-    
-    
-    //Called after the controller's view is loaded into memory
+    @IBOutlet weak var imageview: UIImageView!
+
+  var imagePicker: UIImagePickerController!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    }
+
+    //MARK: - Take image
+    @IBAction func takePhoto(_ sender: Any) {
+        imagePicker =  UIImagePickerController()
         imagePicker.delegate = self
-        // Do any additional setup after loading the view.
+        imagePicker.sourceType = .camera
+        present(imagePicker, animated: true, completion: nil)
     }
+
+    //MARK: - Saving Image here
+    @IBAction func save(_ sender: Any) {
+        guard let image = imageview.image else { return }
+
+        UIImageWriteToSavedPhotosAlbum(image, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
+    }
+
     
-    
-    
-    //Tells the delegate that the user picked a still image or movie.
-    //picker will manage the image picker interface
-    //info A dictionary containing the original image and the edited image
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            //fitting the image to the image view UI
-            imageView.contentMode = .scaleAspectFit
-            
-            //setting the selected image as the image view UI
-            imageView.image = pickedImage
-            
+    //MARK: - Add image to Library
+    @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+        if let error = error {
+            // we got back an error!
+            let ac = UIAlertController(title: "Save error", message: error.localizedDescription, preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .default))
+            present(ac, animated: true)
+        } else {
+            let ac = UIAlertController(title: "Saved!", message: "Your altered image has been saved to your photos.", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .default))
+            present(ac, animated: true)
         }
-        
-        //Dismisses view controller that was presented modally by the view controller
-        dismiss(animated: true, completion: nil)
     }
+
+    //MARK: - Done image capture here
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+           imagePicker.dismiss(animated: true, completion: nil)
+           imageview.image = info[.originalImage] as? UIImage
+       }
     
-    //if the user cancels picking an image 
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        dismiss(animated: true, completion: nil)
+    @IBAction func gallery(_ sender: Any) {
+        imagePicker =  UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = .photoLibrary
+        present(imagePicker, animated: true, completion: nil)
     }
-
-
 }
-
