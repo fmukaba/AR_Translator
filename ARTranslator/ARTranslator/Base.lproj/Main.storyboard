@@ -59,9 +59,6 @@
                                 <state key="normal" title="LIVE">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
-                                <connections>
-                                    <segue destination="BiS-bl-hDU" kind="show" id="KZ0-Tw-HBJ"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -74,28 +71,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="111.99400299850076"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="bNs-17-Aeu">
-            <objects>
-                <viewController id="BiS-bl-hDU" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="t1N-r4-IKf">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lIP-04-Z12">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </arscnView>
-                        </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="UAi-DE-Ryd"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="a2y-nh-SJp"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jq5-pZ-tuZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="892" y="111.99400299850076"/>
         </scene>
     </scenes>
 </document>
