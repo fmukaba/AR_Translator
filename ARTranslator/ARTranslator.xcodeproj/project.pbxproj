@@ -115,7 +115,6 @@
 		C636126523D92479000A1F24 /* ARTranslator */ = {
 			isa = PBXGroup;
 			children = (
-				C6F7F64E23DF8A6600630C91 /* GoogleService-Info.plist */,
 				C636126623D92479000A1F24 /* AppDelegate.swift */,
 				C636126823D92479000A1F24 /* SceneDelegate.swift */,
 				C636126A23D92479000A1F24 /* ViewController.swift */,
@@ -123,6 +122,7 @@
 				C636127223D9247A000A1F24 /* Assets.xcassets */,
 				C636127423D9247A000A1F24 /* LaunchScreen.storyboard */,
 				C636127723D9247A000A1F24 /* Info.plist */,
+				C6F7F64E23DF8A6600630C91 /* GoogleService-Info.plist */,
 				C636126F23D92479000A1F24 /* ARTranslator.xcdatamodeld */,
 			);
 			path = ARTranslator;

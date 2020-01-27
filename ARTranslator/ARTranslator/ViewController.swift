@@ -7,23 +7,29 @@
 //
 
 import UIKit
+import FirebaseMLVision
+import FirebaseMLNLTranslate
 
 
 class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate  {
 
     @IBOutlet weak var imageview: UIImageView!
-    
     var imagePicker: UIImagePickerController!
+    let vision = Vision.vision()
+    var textRecognizer: VisionTextRecognizer!
+    var textDetected: String!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        textRecognizer = vision.onDeviceTextRecognizer()
     }
 
 
     @IBAction func takePhoto(_ sender: Any) {
         imagePicker =  UIImagePickerController()
         imagePicker.delegate = self
-    imagePicker.sourceType = .camera
+        imagePicker.sourceType = .camera
         present(imagePicker, animated: true, completion: nil)
     }
     
@@ -46,7 +52,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
             present(ac, animated: true)
         }
     }
-    //MARK: - Done image capture here
+    //MARK: - image capture
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
            imagePicker.dismiss(animated: true, completion: nil)
            imageview.image = info[.originalImage] as? UIImage
@@ -57,5 +63,50 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         imagePicker.delegate = self
         imagePicker.sourceType = .photoLibrary
         present(imagePicker, animated: true, completion: nil)
+    }
+    //MARK: - Text detection
+    @IBAction func extractBtn(_ sender: Any) {
+        launchExtraction()
+    }
+    
+    func launchExtraction() {
+        guard let image = imageview.image else { return } // raise an exception
+        let visionImage = VisionImage(image: image)
+        
+        textRecognizer.process(visionImage) {(features, errors) in
+             
+            self.textDetected = features?.text ?? ""
+            print(self.textDetected!)
+            
+            for block in features!.blocks {
+            // line by line
+                for line in block.lines {
+                    // word by word
+                    for element in line.elements {
+                        print(element.text, " " )
+                    }
+                }
+            }
+            
+            // get translated text
+            //self.translateToFrench(text: self.scanned)
+            // overlay translation
+                  
+            // get block by block
+                  
+            }
+    }
+    
+    @IBAction func shareBtn(_ sender: Any) {
+        shareText()
+    }
+    
+    
+    func shareText() {
+      let vc = UIActivityViewController(
+        activityItems: [textDetected ?? ""],
+        applicationActivities: [])
+
+      present(vc, animated: true, completion: nil)
     }
 }
