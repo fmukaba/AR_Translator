@@ -16,6 +16,7 @@
 		C636127323D9247A000A1F24 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C636127223D9247A000A1F24 /* Assets.xcassets */; };
 		C636127623D9247A000A1F24 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C636127423D9247A000A1F24 /* LaunchScreen.storyboard */; };
 		C636128123D9247B000A1F24 /* ARTranslatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636128023D9247B000A1F24 /* ARTranslatorTests.swift */; };
+		C64D322723EB6AC00031916B /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64D322623EB6AC00031916B /* CameraViewController.swift */; };
 		C6F7F64F23DF8A6600630C91 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C6F7F64E23DF8A6600630C91 /* GoogleService-Info.plist */; };
 		DFC6606E84D2565371881B91 /* Pods_ARTranslatorTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EC7328C34EA7EB9AE34498C /* Pods_ARTranslatorTests.framework */; };
 /* End PBXBuildFile section */
@@ -49,6 +50,7 @@
 		C636127C23D9247B000A1F24 /* ARTranslatorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ARTranslatorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C636128023D9247B000A1F24 /* ARTranslatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARTranslatorTests.swift; sourceTree = "<group>"; };
 		C636128223D9247B000A1F24 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C64D322623EB6AC00031916B /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		C6F7F64E23DF8A6600630C91 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -117,6 +119,7 @@
 			children = (
 				C636126623D92479000A1F24 /* AppDelegate.swift */,
 				C636126823D92479000A1F24 /* SceneDelegate.swift */,
+				C64D322623EB6AC00031916B /* CameraViewController.swift */,
 				C636126A23D92479000A1F24 /* ViewController.swift */,
 				C636126C23D92479000A1F24 /* Main.storyboard */,
 				C636127223D9247A000A1F24 /* Assets.xcassets */,
@@ -325,6 +328,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C636126B23D92479000A1F24 /* ViewController.swift in Sources */,
+				C64D322723EB6AC00031916B /* CameraViewController.swift in Sources */,
 				C636126723D92479000A1F24 /* AppDelegate.swift in Sources */,
 				C636127123D92479000A1F24 /* ARTranslator.xcdatamodeld in Sources */,
 				C636126923D92479000A1F24 /* SceneDelegate.swift in Sources */,
@@ -491,6 +495,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 57ZAM578YW;
 				INFOPLIST_FILE = ARTranslator/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -510,6 +515,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 57ZAM578YW;
 				INFOPLIST_FILE = ARTranslator/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
