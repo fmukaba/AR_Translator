@@ -59,7 +59,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
        }
     
     @IBAction func gallery(_ sender: Any) {
-        imagePicker =  UIImagePickerController()
+        imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = .photoLibrary
         present(imagePicker, animated: true, completion: nil)
@@ -76,7 +76,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         textRecognizer.process(visionImage) {(features, errors) in
              
             self.textDetected = features?.text ?? ""
-            print(self.textDetected!)
+            //print(self.textDetected!)
             
             for block in features!.blocks {
             // line by line
@@ -89,7 +89,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
             }
             
             // get translated text
-            //self.translateToFrench(text: self.scanned)
+            // self.translateToFrench(text: self.scanned)
             // overlay translation
                   
             // get block by block
