@@ -4,7 +4,6 @@
 //
 //  Created by Francois Mukaba on 1/22/20.
 //  Copyright © 2020 Francois Mukaba. All rights reserved.
-//
 
 import UIKit
 import FirebaseMLVision

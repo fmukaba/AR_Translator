@@ -66,17 +66,27 @@ class CameraViewController: UIViewController, UINavigationControllerDelegate, UI
     }
     
     func startTextDetection() {
-        
         let textRequest = VNDetectTextRectanglesRequest(completionHandler: self.detectTextHandler)
-        let request = VNRecognizeTextRequest(completionHandler: self.handleDetectedText)
-        
-        request.recognitionLevel = .fast
-        request.usesLanguageCorrection = false
         textRequest.reportCharacterBoxes = true
         
-        requests = [textRequest, request]
+        let region = CGRect(x: 0, y: 0, width: 0.5, height: 0.5)
+        let outline = CALayer()
+        outline.frame = region
+        outline.borderWidth = 2.0
+        outline.borderColor = UIColor.blue.cgColor
+            
+        imageView.layer.addSublayer(outline)
         
+        let request = VNRecognizeTextRequest(completionHandler: self.handleDetectedText)
+        request.recognitionLevel = .fast
+        request.usesLanguageCorrection = false
+        request.minimumTextHeight = 0.5
+        request.usesCPUOnly = true
+        request.regionOfInterest = region
+       
+        requests = [textRequest, request]
     }
+    
     // Handler for text itself
     fileprivate func handleDetectedText(request: VNRequest?, error: Error?) {
         if let error = error {
@@ -84,23 +94,18 @@ class CameraViewController: UIViewController, UINavigationControllerDelegate, UI
             return
         }
         guard let results = request?.results, results.count > 0 else {
-            presentAlert(title: "Error", message: "No text was found.")
+            //presentAlert(title: "Error", message: "No text was found.")
             return
         }
 
-       
-        
         for result in results {
             if let observation = result as? VNRecognizedTextObservation {
+                
                 for text in observation.topCandidates(1) {
                     print(text.string)
                 }
             }
         }
-        
-       
-        
-        
     }
     
     
@@ -161,10 +166,16 @@ class CameraViewController: UIViewController, UINavigationControllerDelegate, UI
         let width = (minX - maxX) * imageView.frame.size.width
         let height = (minY - maxY) * imageView.frame.size.height
             
-        let outline = CALayer()
+        let outline = CATextLayer()
         outline.frame = CGRect(x: xCord, y: yCord, width: width, height: height)
         outline.borderWidth = 2.0
-        outline.borderColor = UIColor.red.cgColor
+        outline.backgroundColor = UIColor.darkGray.cgColor
+        outline.string = "text"
+        // fix scaling of text
+        outline.font = UIFont(name: "Helvetica", size: height*(1/3))
+        outline.shadowOpacity = 0.1
+        outline.alignmentMode = CATextLayerAlignmentMode.center
+        outline.borderColor = UIColor.blue.cgColor
             
         imageView.layer.addSublayer(outline)
     }
