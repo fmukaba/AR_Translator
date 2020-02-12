@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B2E25C0EE5BFA25E0DF040D8 /* Pods_ARTranslator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E0FB5AF27CE1AB6643E984C /* Pods_ARTranslator.framework */; };
+		C622222823F4A334003DF2B0 /* ARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C622222723F4A334003DF2B0 /* ARViewController.swift */; };
 		C636126723D92479000A1F24 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636126623D92479000A1F24 /* AppDelegate.swift */; };
 		C636126923D92479000A1F24 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636126823D92479000A1F24 /* SceneDelegate.swift */; };
 		C636126B23D92479000A1F24 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636126A23D92479000A1F24 /* ViewController.swift */; };
@@ -16,7 +17,6 @@
 		C636127323D9247A000A1F24 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C636127223D9247A000A1F24 /* Assets.xcassets */; };
 		C636127623D9247A000A1F24 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C636127423D9247A000A1F24 /* LaunchScreen.storyboard */; };
 		C636128123D9247B000A1F24 /* ARTranslatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636128023D9247B000A1F24 /* ARTranslatorTests.swift */; };
-		C64D322723EB6AC00031916B /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64D322623EB6AC00031916B /* CameraViewController.swift */; };
 		C6F7F64F23DF8A6600630C91 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C6F7F64E23DF8A6600630C91 /* GoogleService-Info.plist */; };
 		DFC6606E84D2565371881B91 /* Pods_ARTranslatorTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EC7328C34EA7EB9AE34498C /* Pods_ARTranslatorTests.framework */; };
 /* End PBXBuildFile section */
@@ -38,6 +38,7 @@
 		7E0FB5AF27CE1AB6643E984C /* Pods_ARTranslator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ARTranslator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DDED1FFAACD25A3546F390A /* Pods-ARTranslator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARTranslator.release.xcconfig"; path = "Target Support Files/Pods-ARTranslator/Pods-ARTranslator.release.xcconfig"; sourceTree = "<group>"; };
 		8E798B30095A8C56F81D4281 /* Pods-ARTranslatorTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARTranslatorTests.debug.xcconfig"; path = "Target Support Files/Pods-ARTranslatorTests/Pods-ARTranslatorTests.debug.xcconfig"; sourceTree = "<group>"; };
+		C622222723F4A334003DF2B0 /* ARViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewController.swift; sourceTree = "<group>"; };
 		C636126323D92479000A1F24 /* ARTranslator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARTranslator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C636126623D92479000A1F24 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C636126823D92479000A1F24 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -50,7 +51,6 @@
 		C636127C23D9247B000A1F24 /* ARTranslatorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ARTranslatorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C636128023D9247B000A1F24 /* ARTranslatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARTranslatorTests.swift; sourceTree = "<group>"; };
 		C636128223D9247B000A1F24 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C64D322623EB6AC00031916B /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		C6F7F64E23DF8A6600630C91 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -119,9 +119,9 @@
 			children = (
 				C636126623D92479000A1F24 /* AppDelegate.swift */,
 				C636126823D92479000A1F24 /* SceneDelegate.swift */,
-				C64D322623EB6AC00031916B /* CameraViewController.swift */,
 				C636126A23D92479000A1F24 /* ViewController.swift */,
 				C636126C23D92479000A1F24 /* Main.storyboard */,
+				C622222723F4A334003DF2B0 /* ARViewController.swift */,
 				C636127223D9247A000A1F24 /* Assets.xcassets */,
 				C636127423D9247A000A1F24 /* LaunchScreen.storyboard */,
 				C636127723D9247A000A1F24 /* Info.plist */,
@@ -328,8 +328,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C636126B23D92479000A1F24 /* ViewController.swift in Sources */,
-				C64D322723EB6AC00031916B /* CameraViewController.swift in Sources */,
 				C636126723D92479000A1F24 /* AppDelegate.swift in Sources */,
+				C622222823F4A334003DF2B0 /* ARViewController.swift in Sources */,
 				C636127123D92479000A1F24 /* ARTranslator.xcdatamodeld in Sources */,
 				C636126923D92479000A1F24 /* SceneDelegate.swift in Sources */,
 			);

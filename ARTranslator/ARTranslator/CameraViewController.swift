@@ -47,8 +47,11 @@ class CameraViewController: UIViewController, UINavigationControllerDelegate, UI
         
         // output camera-feed on screen
         let deviceOutput = AVCaptureVideoDataOutput()
+       
         deviceOutput.videoSettings = [kCVPixelBufferPixelFormatTypeKey as String: Int(kCVPixelFormatType_32BGRA)]
+        
         deviceOutput.setSampleBufferDelegate(self, queue: DispatchQueue.global(qos: DispatchQoS.QoSClass.default))
+        
         captureSession.addOutput(deviceOutput)
         
         // add a sublayer containing the video preview to the imageView
@@ -82,7 +85,7 @@ class CameraViewController: UIViewController, UINavigationControllerDelegate, UI
         request.usesLanguageCorrection = false
         request.minimumTextHeight = 0.5
         request.usesCPUOnly = true
-        request.regionOfInterest = region
+        //request.regionOfInterest = region
        
         requests = [textRequest, request]
     }
@@ -125,7 +128,7 @@ class CameraViewController: UIViewController, UINavigationControllerDelegate, UI
                     continue
                 }
                 
-                self.highlightWord(box: rg)
+                self.highlightWord(box: rg, translation : "text")
                 
 //                if let boxes = region?.characterBoxes {
 //                    for characterBox in boxes {
@@ -136,7 +139,7 @@ class CameraViewController: UIViewController, UINavigationControllerDelegate, UI
         }
     }
     
-    func highlightWord(box: VNTextObservation) {
+    func highlightWord(box: VNTextObservation, translation : String) {
         guard let boxes = box.characterBoxes else {
             return
         }
@@ -170,13 +173,13 @@ class CameraViewController: UIViewController, UINavigationControllerDelegate, UI
         outline.frame = CGRect(x: xCord, y: yCord, width: width, height: height)
         outline.borderWidth = 2.0
         outline.backgroundColor = UIColor.darkGray.cgColor
-        outline.string = "text"
+        outline.string = translation
         // fix scaling of text
         outline.font = UIFont(name: "Helvetica", size: height*(1/3))
         outline.shadowOpacity = 0.1
         outline.alignmentMode = CATextLayerAlignmentMode.center
         outline.borderColor = UIColor.blue.cgColor
-            
+        
         imageView.layer.addSublayer(outline)
     }
     
