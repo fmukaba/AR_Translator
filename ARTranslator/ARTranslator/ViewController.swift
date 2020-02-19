@@ -9,6 +9,9 @@
 import UIKit
 import FirebaseMLVision
 import FirebaseMLNLTranslate
+import UIKit
+import MobileCoreServices
+import Firebase
 
 
 class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate  {
@@ -19,10 +22,16 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     var textRecognizer: VisionTextRecognizer!
     var textDetected: String!
     
+    let processor = ScaledElementProcessor()
+    var frameSublayer = CALayer()
+    
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         textRecognizer = vision.onDeviceTextRecognizer()
+        
     }
 
 
@@ -64,37 +73,34 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         imagePicker.sourceType = .photoLibrary
         present(imagePicker, animated: true, completion: nil)
     }
+    
     //MARK: - Text detection
     @IBAction func extractBtn(_ sender: Any) {
+        imageview.layer.addSublayer(frameSublayer)
+        drawFeatures(in: imageview)
         launchExtraction()
+        
     }
     
     func launchExtraction() {
         guard let image = imageview.image else { return } // raise an exception
         let visionImage = VisionImage(image: image)
-        
+
         textRecognizer.process(visionImage) {(features, errors) in
-             
+
             self.textDetected = features?.text ?? ""
-            print(self.textDetected!)
-            
+            //print(self.textDetected!)
+
             for block in features!.blocks {
             // line by line
                 for line in block.lines {
                     // word by word
                     for element in line.elements {
-                        print(element.text, " " )
+                        print(element.text, " ")
                     }
                 }
             }
-            
-            // get translated text
-            //self.translateToFrench(text: self.scanned)
-            // overlay translation
-                  
-            // get block by block
-                  
-            }
+        }
     }
     
     @IBAction func shareBtn(_ sender: Any) {
@@ -109,4 +115,25 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 
       present(vc, animated: true, completion: nil)
     }
-}
+    
+    private func removeFrames() {
+        guard let sublayers = frameSublayer.sublayers else { return }
+        for sublayer in sublayers {
+          sublayer.removeFromSuperlayer()
+        }
+      }
+      
+      // 1
+      private func drawFeatures(in imageView: UIImageView, completion: (() -> Void)? = nil) {
+        removeFrames()
+        processor.process(in: imageView) { text, elements in
+          elements.forEach() { element in
+            self.frameSublayer.addSublayer(element.shapeLayer)
+          }
+        }
+      }
+    }
+
+    
+    
+
