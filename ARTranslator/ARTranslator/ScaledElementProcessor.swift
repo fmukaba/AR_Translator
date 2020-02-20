@@ -12,6 +12,7 @@ import Firebase
 struct ScaledElement {
   let frame: CGRect
   let shapeLayer: CALayer
+  //let textLayer: CATextLayer //add text to the rect
 }
 
 class ScaledElementProcessor {
@@ -36,11 +37,23 @@ class ScaledElementProcessor {
       for block in result.blocks {
         for line in block.lines {
           for element in line.elements {
+            //the CGrect
             let frame = self.createScaledFrame(featureFrame: element.frame, imageSize: image.size, viewFrame: imageView.frame)
             
+            //create the actual shapelayer
             let shapeLayer = self.createShapeLayer(frame: frame)
+            
+            //get the text
+            //let detectedText = element.text
+            
+            //set textlayer
+            
             let scaledElement = ScaledElement(frame: frame, shapeLayer: shapeLayer)
             scaledElements.append(scaledElement)
+            
+            //print out detected text
+            print(element.text, " ")
+            
           }
         }
       }
@@ -48,6 +61,19 @@ class ScaledElementProcessor {
       callback(result.text, scaledElements)
     }
   }
+    
+    private func createTextLayer(frame: CGRect, text: String) -> CATextLayer{
+        let textLayer = CATextLayer()
+        textLayer.string = text
+        textLayer.font = UIFont(name: "TrebuchetMS-Bold", size: 5)
+        textLayer.foregroundColor = UIColor.darkGray.cgColor
+        textLayer.isWrapped = true
+        textLayer.alignmentMode = CATextLayerAlignmentMode.left
+        textLayer.contentsScale = UIScreen.main.scale
+        return textLayer
+        //someView.layer.addSublayer(textLayer)
+
+    }
 
   private func createShapeLayer(frame: CGRect) -> CAShapeLayer {
     let bpath = UIBezierPath(rect: frame)

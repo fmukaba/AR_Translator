@@ -4,7 +4,6 @@
 //
 //  Created by Francois Mukaba on 1/22/20.
 //  Copyright © 2020 Francois Mukaba. All rights reserved.
-//
 
 import UIKit
 import FirebaseMLVision
@@ -25,6 +24,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     let processor = ScaledElementProcessor()
     var frameSublayer = CALayer()
     
+    //let textLayer = CATextLayer()
 
 
     override func viewDidLoad() {
@@ -68,7 +68,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
        }
     
     @IBAction func gallery(_ sender: Any) {
-        imagePicker =  UIImagePickerController()
+        imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = .photoLibrary
         present(imagePicker, animated: true, completion: nil)
@@ -77,9 +77,9 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     //MARK: - Text detection
     @IBAction func extractBtn(_ sender: Any) {
         imageview.layer.addSublayer(frameSublayer)
+        //add textview here 
         drawFeatures(in: imageview)
-        launchExtraction()
-        
+            
     }
     
     func launchExtraction() {
@@ -90,7 +90,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 
             self.textDetected = features?.text ?? ""
             //print(self.textDetected!)
-
             for block in features!.blocks {
             // line by line
                 for line in block.lines {
@@ -102,7 +101,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
             }
         }
     }
-    
+
     @IBAction func shareBtn(_ sender: Any) {
         shareText()
     }
@@ -129,10 +128,13 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         processor.process(in: imageView) { text, elements in
           elements.forEach() { element in
             self.frameSublayer.addSublayer(element.shapeLayer)
+            
           }
         }
       }
     }
+
+
 
     
     
