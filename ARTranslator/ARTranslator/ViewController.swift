@@ -124,6 +124,10 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         for sublayer in sublayers {
           sublayer.removeFromSuperlayer()
         }
+        guard let sublayers2 = textLayer.sublayers else { return }
+        for sublayer in sublayers2 {
+            sublayer.removeFromSuperlayer()
+        }
       }
       
       // 1
