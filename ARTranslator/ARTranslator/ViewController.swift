@@ -22,9 +22,12 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     var textDetected: String!
     
     let processor = ScaledElementProcessor()
+    
+    //ca layer
     var frameSublayer = CALayer()
     
-    //let textLayer = CATextLayer()
+    //text layer
+    var textLayer = CATextLayer()
 
 
     override func viewDidLoad() {
@@ -77,6 +80,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     //MARK: - Text detection
     @IBAction func extractBtn(_ sender: Any) {
         imageview.layer.addSublayer(frameSublayer)
+        imageview.layer.addSublayer(textLayer)
         //add textview here 
         drawFeatures(in: imageview)
             
@@ -128,7 +132,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         processor.process(in: imageView) { text, elements in
           elements.forEach() { element in
             self.frameSublayer.addSublayer(element.shapeLayer)
-            
+            self.textLayer.addSublayer(element.textLayer)
           }
         }
       }

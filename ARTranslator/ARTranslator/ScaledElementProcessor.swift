@@ -12,7 +12,7 @@ import Firebase
 struct ScaledElement {
   let frame: CGRect
   let shapeLayer: CALayer
-  //let textLayer: CATextLayer //add text to the rect
+  let textLayer: CATextLayer //add text to the rect
 }
 
 class ScaledElementProcessor {
@@ -37,18 +37,23 @@ class ScaledElementProcessor {
       for block in result.blocks {
         for line in block.lines {
           for element in line.elements {
+            
             //the CGrect
             let frame = self.createScaledFrame(featureFrame: element.frame, imageSize: image.size, viewFrame: imageView.frame)
             
             //create the actual shapelayer
-            let shapeLayer = self.createShapeLayer(frame: frame)
+           let shapeLayer = self.createShapeLayer(frame: frame)
             
             //get the text
-            //let detectedText = element.text
+            let detectedText = element.text
             
             //set textlayer
+            let textLayer = self.createTextLayer(frame: frame, text: detectedText)
             
-            let scaledElement = ScaledElement(frame: frame, shapeLayer: shapeLayer)
+            //create scaled Element
+           let scaledElement = ScaledElement(frame: frame, shapeLayer: shapeLayer, textLayer: textLayer)
+           // let scaledElement = ScaledElement(frame: frame, textLayer: textLayer)
+            
             scaledElements.append(scaledElement)
             
             //print out detected text
@@ -62,17 +67,25 @@ class ScaledElementProcessor {
     }
   }
     
+    //translate text
+    private func translateString(text: String) -> String{
+        
+        return text
+    }
+  
+    //create text layer 
     private func createTextLayer(frame: CGRect, text: String) -> CATextLayer{
         let textLayer = CATextLayer()
+        textLayer.frame = frame
         textLayer.string = text
-        textLayer.font = UIFont(name: "TrebuchetMS-Bold", size: 5)
+        textLayer.font = UIFont(name: "TrebuchetMS-Bold", size: 50)
+        textLayer.fontSize = frame.height
+        textLayer.backgroundColor = UIColor.white.cgColor
         textLayer.foregroundColor = UIColor.darkGray.cgColor
         textLayer.isWrapped = true
-        textLayer.alignmentMode = CATextLayerAlignmentMode.left
+        textLayer.alignmentMode = CATextLayerAlignmentMode.center
         textLayer.contentsScale = UIScreen.main.scale
         return textLayer
-        //someView.layer.addSublayer(textLayer)
-
     }
 
   private func createShapeLayer(frame: CGRect) -> CAShapeLayer {
