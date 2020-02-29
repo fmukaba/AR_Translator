@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2091C79024045EAE008E2F04 /* avgColorGrabber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2091C78F24045EAE008E2F04 /* avgColorGrabber.swift */; };
+		20DDE5B7240B2FD300925265 /* avgColorGrabber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DDE5B6240B2FD200925265 /* avgColorGrabber.swift */; };
 		3596D3F623FC673A00D27736 /* ScaledElementProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3596D3F523FC673A00D27736 /* ScaledElementProcessor.swift */; };
 		B2E25C0EE5BFA25E0DF040D8 /* Pods_ARTranslator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E0FB5AF27CE1AB6643E984C /* Pods_ARTranslator.framework */; };
 		C622222823F4A334003DF2B0 /* ARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C622222723F4A334003DF2B0 /* ARViewController.swift */; };
@@ -35,6 +35,7 @@
 
 /* Begin PBXFileReference section */
 		16F403599D6C0DC8D427B7AA /* Pods-ARTranslator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARTranslator.debug.xcconfig"; path = "Target Support Files/Pods-ARTranslator/Pods-ARTranslator.debug.xcconfig"; sourceTree = "<group>"; };
+		20DDE5B6240B2FD200925265 /* avgColorGrabber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = avgColorGrabber.swift; path = ../../../../Desktop/avgColorGrabber.swift; sourceTree = "<group>"; };
 		28CBB93130CCAEA7420C804D /* Pods-ARTranslatorTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARTranslatorTests.release.xcconfig"; path = "Target Support Files/Pods-ARTranslatorTests/Pods-ARTranslatorTests.release.xcconfig"; sourceTree = "<group>"; };
 		3596D3F523FC673A00D27736 /* ScaledElementProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaledElementProcessor.swift; sourceTree = "<group>"; };
 		6EC7328C34EA7EB9AE34498C /* Pods_ARTranslatorTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ARTranslatorTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -123,6 +124,7 @@
 				C636126623D92479000A1F24 /* AppDelegate.swift */,
 				C636126823D92479000A1F24 /* SceneDelegate.swift */,
 				C636126A23D92479000A1F24 /* ViewController.swift */,
+				20DDE5B6240B2FD200925265 /* avgColorGrabber.swift */,
 				C636126C23D92479000A1F24 /* Main.storyboard */,
 				C622222723F4A334003DF2B0 /* ARViewController.swift */,
 				C636127223D9247A000A1F24 /* Assets.xcassets */,
@@ -335,6 +337,7 @@
 				C636126723D92479000A1F24 /* AppDelegate.swift in Sources */,
 				C622222823F4A334003DF2B0 /* ARViewController.swift in Sources */,
 				C636127123D92479000A1F24 /* ARTranslator.xcdatamodeld in Sources */,
+				20DDE5B7240B2FD300925265 /* avgColorGrabber.swift in Sources */,
 				C636126923D92479000A1F24 /* SceneDelegate.swift in Sources */,
 				3596D3F623FC673A00D27736 /* ScaledElementProcessor.swift in Sources */,
 			);
