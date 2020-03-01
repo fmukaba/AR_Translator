@@ -13,15 +13,31 @@ import CoreImage
 
 class avgColorGrabber: NSObject
 {
-    let image
-    
-    
-    func getPixelColor(pos: CGPoint) -> UIColor {
+    var image: CGImage
+    var pixelData: CFData
+    var data: UnsafePointer<UInt8>
+    //    var context: CGContext // needed?
 
-        let pixelData = self.cgImage!.dataProvider!.data
-        let data: UnsafePointer<UInt8> = CFDataGetBytePtr(pixelData)
 
-        let pixelInfo: Int = ((Int(self.size.width) * Int(pos.y)) + Int(pos.x)) * 4
+    // Initialize with an image, either a UIImage or CGImage will work
+    public init(image: UIImage) // init with UIImage
+    {
+        self.image = image.cgImage!
+        pixelData = self.image.dataProvider!.data!
+        data = CFDataGetBytePtr(pixelData)
+    }
+    init(image: CGImage) // init with CGImage
+    {
+        self.image = image
+        pixelData = self.image.dataProvider!.data!
+        data = CFDataGetBytePtr(pixelData)
+    }
+
+
+
+    func getPixelColor(pos: CGPoint) -> UIColor
+    {
+        let pixelInfo: Int = ((Int(self.image.width) * Int(pos.y)) + Int(pos.x)) * 4
 
         let r = CGFloat(data[pixelInfo]) / CGFloat(255.0)
         let g = CGFloat(data[pixelInfo+1]) / CGFloat(255.0)
@@ -31,7 +47,3 @@ class avgColorGrabber: NSObject
         return UIColor(red: r, green: g, blue: b, alpha: a)
     }
 }
-
-
-
-
