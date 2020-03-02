@@ -10,13 +10,20 @@ import UIKit
 import SceneKit
 import ARKit
 import Vision
+import Firebase
 
 class ARViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate{
 
+    @IBOutlet weak var imageView: UIImageView!
+    
     @IBOutlet weak var sceneView: ARSCNView!
+    let vision = Vision.vision()
+    var textRecognizer : VisionTextRecognizer?
+    let framer = ScaledElementProcessor()
     
     var lastFrame : ARFrame?
-    var requests = [VNRequest]()
+    var currentImage : UIImage?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +31,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate{
         // Set the view's delegate
         sceneView.delegate = self
         sceneView.session.delegate = self
+        
         //sceneView.preferredFramesPerSecond = 2
         
         // Show statistics such as fps and timing information
@@ -33,71 +41,20 @@ class ARViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate{
         //let scene = SCNScene(named: "art.scnassets/ship.scn")!
         
         // Set the scene to the view
-       // sceneView.scene = scene
-        requestVisionDetection()
+        //sceneView.scene = scene
+        
+        requestTextDetection()
     }
     
  
     
-    func requestVisionDetection() {
-      
-        let request = VNRecognizeTextRequest(completionHandler: self.textDetectionHandler)
-        request.recognitionLevel = .fast
-        request.usesLanguageCorrection = false
-        request.minimumTextHeight = 0.5
-        request.usesCPUOnly = true
-        //request.regionOfInterest = region
-        requests = [request]
+    func requestTextDetection() {
+        textRecognizer = vision.onDeviceTextRecognizer()
+  
     }
     
     
-    // handles request for detected texts
-    fileprivate func textDetectionHandler(request: VNRequest?, error: Error?) {
-           if let error = error {
-               presentAlert(title: "Error", message: error.localizedDescription)
-               return
-           }
-           guard let results = request?.results, results.count > 0 else {
-               //presentAlert(title: "Error", message: "No text was found.")
-               return
-           }
-
-           for result in results {
-               if let observation = result as? VNRecognizedTextObservation {
-                   
-                   for text in observation.topCandidates(1) {
-                       print(text.string)
-                   }
-               }
-           }
-       }
     
-     // Handler for bounding boxes
-        func detectedBoundsHandler(request: VNRequest, error: Error?) {
-            guard let observations = request.results else {
-                print("no result")
-                return
-            }
-                
-            let result = observations.map({$0 as? VNTextObservation})
-            DispatchQueue.main.async() {
-                self.sceneView.layer.sublayers?.removeSubrange(1...)
-                for region in result {
-                    
-                    guard let rg = region else {
-                        continue
-                    }
-                    
-                    self.highlightWord(box: rg, translation : "text")
-                    
-    //                if let boxes = region?.characterBoxes {
-    //                    for characterBox in boxes {
-    //                        self.highlightLetters(box: characterBox)
-    //                    }
-    //                }
-                }
-            }
-        }
     
       func highlightWord(box: VNTextObservation, translation : String) {
             guard let boxes = box.characterBoxes else {
@@ -194,19 +151,77 @@ class ARViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate{
         // Reset tracking and/or remove existing anchors if consistent tracking is required
         
     }
+    
+    private func createVisionImage() -> VisionImage? {
+        guard let pixbuff : CVPixelBuffer? = lastFrame?.capturedImage else {
+         return nil
+       }
+        
+       let ciImage = CIImage(cvPixelBuffer: pixbuff!)
+
+       let context = CIContext.init(options: nil)
+
+       guard let cgImage = context.createCGImage(ciImage, from: ciImage.extent) else {
+         return nil
+       }
+      
+        let rotatedImage =
+        UIImage.init(cgImage: cgImage, scale: 1.0, orientation: .up)
+      
+        guard let rotatedCGImage = rotatedImage.cgImage else {
+         return nil
+       }
+       
+        let mirroredImage = UIImage.init(
+        cgImage: rotatedCGImage, scale: 1.0, orientation: .left)
+        
+        imageView.image = mirroredImage
+        
+        
+        let imageMetadata = VisionImageMetadata()
+
+        // Initialize a VisionImage object with the given UIImage.
+        let visionImage = VisionImage(image: mirroredImage)
+        visionImage.metadata = imageMetadata
+       return visionImage
+     }
+    
+    func processImage() {
+        let visionImage = createVisionImage()
+        textRecognizer?.process(visionImage!) { result, error in
+
+            guard error == nil, let result = result else {
+                return
+            }
+            for block in result.blocks {
+                // line by line
+                for line in block.lines {
+                // print(line.text, " ")
+                    
+                    for element in line.elements {
+                                
+                    }
+                }
+            }
+                    
+        }
+    }
 
     func session(_ session: ARSession, didUpdate frame: ARFrame) {
-           if(lastFrame == nil){
-               lastFrame = frame
-           }
+        if(lastFrame == nil){
+            lastFrame = frame
+        }
            
-           // grabs frame every 4 seconds
-           if (frame.timestamp - lastFrame!.timestamp >= 4) {
-               lastFrame = frame
-               if case .normal = frame.camera.trackingState {
-                   let imageRequestHandler = VNImageRequestHandler(cvPixelBuffer: frame.capturedImage, orientation: CGImagePropertyOrientation(rawValue: 6)!)
-                   do {
-                       try imageRequestHandler.perform(self.requests)
+        // grabs frame every 4 seconds
+        if (frame.timestamp - lastFrame!.timestamp >= 4) {
+            lastFrame = frame
+            if case .normal = frame.camera.trackingState {
+//                if ( UIDevice.currentDevice.orientation == UIDeviceOrientation.landscapeLeft || UIDevice.currentDevice().orientation == UIDeviceOrientation.landscapeLeft){
+//
+                
+                do {
+                    processImage()
+                    
                    } catch {
                            print(error)
                    }

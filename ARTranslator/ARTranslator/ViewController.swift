@@ -86,25 +86,25 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
             
     }
     
-    func launchExtraction() {
-        guard let image = imageview.image else { return } // raise an exception
-        let visionImage = VisionImage(image: image)
-
-        textRecognizer.process(visionImage) {(features, errors) in
-
-            self.textDetected = features?.text ?? ""
-            //print(self.textDetected!)
-            for block in features!.blocks {
-            // line by line
-                for line in block.lines {
-                    // word by word
-                    for element in line.elements {
-                        print(element.text, " ")
-                    }
-                }
-            }
-        }
-    }
+//    func launchExtraction() {
+//        guard let image = imageview.image else { return } // raise an exception
+//        let visionImage = VisionImage(image: image)
+//
+//        textRecognizer.process(visionImage) {(features, errors) in
+//
+//            self.textDetected = features?.text ?? ""
+//            //print(self.textDetected!)
+//            for block in features!.blocks {
+//            // line by line
+//                for line in block.lines {
+//                    // word by word
+//                    for element in line.elements {
+//                        print(element.text, " ")
+//                    }
+//                }
+//            }
+//        }
+//    }
 
     @IBAction func shareBtn(_ sender: Any) {
         shareText()

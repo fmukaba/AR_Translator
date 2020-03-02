@@ -69,7 +69,6 @@ class ScaledElementProcessor {
     
     //translate text
     private func translateString(text: String) -> String{
-        
         return text
     }
   
@@ -89,13 +88,13 @@ class ScaledElementProcessor {
     }
 
   private func createShapeLayer(frame: CGRect) -> CAShapeLayer {
-    let bpath = UIBezierPath(rect: frame)
-    let shapeLayer = CAShapeLayer()
-    shapeLayer.path = bpath.cgPath
-    shapeLayer.strokeColor = Constants.lineColor
-    shapeLayer.fillColor = Constants.fillColor
-    shapeLayer.lineWidth = Constants.lineWidth
-    return shapeLayer
+        let bpath = UIBezierPath(rect: frame)
+        let shapeLayer = CAShapeLayer()
+        shapeLayer.path = bpath.cgPath
+        shapeLayer.strokeColor = Constants.lineColor
+        shapeLayer.fillColor = Constants.fillColor
+        shapeLayer.lineWidth = Constants.lineWidth
+        return shapeLayer
   }
   
   private func createScaledFrame(featureFrame: CGRect, imageSize: CGSize, viewFrame: CGRect) -> CGRect {
