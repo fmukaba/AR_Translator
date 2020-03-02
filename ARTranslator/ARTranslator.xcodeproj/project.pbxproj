@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		20DDE5B7240B2FD300925265 /* avgColorGrabber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DDE5B6240B2FD200925265 /* avgColorGrabber.swift */; };
 		3596D3F623FC673A00D27736 /* ScaledElementProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3596D3F523FC673A00D27736 /* ScaledElementProcessor.swift */; };
 		B2E25C0EE5BFA25E0DF040D8 /* Pods_ARTranslator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E0FB5AF27CE1AB6643E984C /* Pods_ARTranslator.framework */; };
 		C622222823F4A334003DF2B0 /* ARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C622222723F4A334003DF2B0 /* ARViewController.swift */; };
@@ -15,7 +16,7 @@
 		C636126B23D92479000A1F24 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636126A23D92479000A1F24 /* ViewController.swift */; };
 		C636126E23D92479000A1F24 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C636126C23D92479000A1F24 /* Main.storyboard */; };
 		C636127123D92479000A1F24 /* ARTranslator.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C636126F23D92479000A1F24 /* ARTranslator.xcdatamodeld */; };
-		C636127323D9247A000A1F24 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C636127223D9247A000A1F24 /* Assets.xcassets */; };
+		C636127323D9247A000A1F24 /* testImage_01.png in Resources */ = {isa = PBXBuildFile; fileRef = C636127223D9247A000A1F24 /* testImage_01.png */; };
 		C636127623D9247A000A1F24 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C636127423D9247A000A1F24 /* LaunchScreen.storyboard */; };
 		C636128123D9247B000A1F24 /* ARTranslatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636128023D9247B000A1F24 /* ARTranslatorTests.swift */; };
 		C6F7F64F23DF8A6600630C91 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C6F7F64E23DF8A6600630C91 /* GoogleService-Info.plist */; };
@@ -34,6 +35,7 @@
 
 /* Begin PBXFileReference section */
 		16F403599D6C0DC8D427B7AA /* Pods-ARTranslator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARTranslator.debug.xcconfig"; path = "Target Support Files/Pods-ARTranslator/Pods-ARTranslator.debug.xcconfig"; sourceTree = "<group>"; };
+		20DDE5B6240B2FD200925265 /* avgColorGrabber.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; fileEncoding = 4; path = avgColorGrabber.swift; sourceTree = "<group>"; };
 		28CBB93130CCAEA7420C804D /* Pods-ARTranslatorTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARTranslatorTests.release.xcconfig"; path = "Target Support Files/Pods-ARTranslatorTests/Pods-ARTranslatorTests.release.xcconfig"; sourceTree = "<group>"; };
 		3596D3F523FC673A00D27736 /* ScaledElementProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaledElementProcessor.swift; sourceTree = "<group>"; };
 		6EC7328C34EA7EB9AE34498C /* Pods_ARTranslatorTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ARTranslatorTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -47,7 +49,7 @@
 		C636126A23D92479000A1F24 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C636126D23D92479000A1F24 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C636127023D92479000A1F24 /* ARTranslator.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ARTranslator.xcdatamodel; sourceTree = "<group>"; };
-		C636127223D9247A000A1F24 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C636127223D9247A000A1F24 /* testImage_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = testImage_01.png; path = /Users/Evan/Desktop/testImage_01.png; sourceTree = "<absolute>"; };
 		C636127523D9247A000A1F24 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C636127723D9247A000A1F24 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C636127C23D9247B000A1F24 /* ARTranslatorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ARTranslatorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -122,9 +124,10 @@
 				C636126623D92479000A1F24 /* AppDelegate.swift */,
 				C636126823D92479000A1F24 /* SceneDelegate.swift */,
 				C636126A23D92479000A1F24 /* ViewController.swift */,
+				20DDE5B6240B2FD200925265 /* avgColorGrabber.swift */,
 				C636126C23D92479000A1F24 /* Main.storyboard */,
 				C622222723F4A334003DF2B0 /* ARViewController.swift */,
-				C636127223D9247A000A1F24 /* Assets.xcassets */,
+				C636127223D9247A000A1F24 /* testImage_01.png */,
 				C636127423D9247A000A1F24 /* LaunchScreen.storyboard */,
 				C636127723D9247A000A1F24 /* Info.plist */,
 				C6F7F64E23DF8A6600630C91 /* GoogleService-Info.plist */,
@@ -230,7 +233,7 @@
 			files = (
 				C636127623D9247A000A1F24 /* LaunchScreen.storyboard in Resources */,
 				C6F7F64F23DF8A6600630C91 /* GoogleService-Info.plist in Resources */,
-				C636127323D9247A000A1F24 /* Assets.xcassets in Resources */,
+				C636127323D9247A000A1F24 /* testImage_01.png in Resources */,
 				C636126E23D92479000A1F24 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -334,6 +337,7 @@
 				C636126723D92479000A1F24 /* AppDelegate.swift in Sources */,
 				C622222823F4A334003DF2B0 /* ARViewController.swift in Sources */,
 				C636127123D92479000A1F24 /* ARTranslator.xcdatamodeld in Sources */,
+				20DDE5B7240B2FD300925265 /* avgColorGrabber.swift in Sources */,
 				C636126923D92479000A1F24 /* SceneDelegate.swift in Sources */,
 				3596D3F623FC673A00D27736 /* ScaledElementProcessor.swift in Sources */,
 			);
@@ -427,7 +431,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -481,7 +485,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -498,14 +502,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = SV4927V37J;
+				DEVELOPMENT_TEAM = 83DXAQWLN9;
 				INFOPLIST_FILE = ARTranslator/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.prod.reina.ARTranslator;
+				PRODUCT_BUNDLE_IDENTIFIER = com.evanjohnson;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -520,14 +524,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = SV4927V37J;
+				DEVELOPMENT_TEAM = 83DXAQWLN9;
 				INFOPLIST_FILE = ARTranslator/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.prod.reina.ARTranslator;
+				PRODUCT_BUNDLE_IDENTIFIER = com.evanjohnson;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -542,9 +546,9 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 57ZAM578YW;
+				DEVELOPMENT_TEAM = 83DXAQWLN9;
 				INFOPLIST_FILE = ARTranslatorTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -565,9 +569,9 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 57ZAM578YW;
+				DEVELOPMENT_TEAM = 83DXAQWLN9;
 				INFOPLIST_FILE = ARTranslatorTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

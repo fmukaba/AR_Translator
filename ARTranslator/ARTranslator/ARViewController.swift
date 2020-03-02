@@ -15,7 +15,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate{
 
     @IBOutlet weak var sceneView: ARSCNView!
     
-
+    var lastFrame : ARFrame?
     var requests = [VNRequest]()
     
     override func viewDidLoad() {
@@ -196,15 +196,21 @@ class ARViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate{
     }
 
     func session(_ session: ARSession, didUpdate frame: ARFrame) {
-        if case .normal = frame.camera.trackingState {
-          
-            let imageRequestHandler = VNImageRequestHandler(cvPixelBuffer: frame.capturedImage, orientation: CGImagePropertyOrientation(rawValue: 6)!)
-                   
-            do {
-                try imageRequestHandler.perform(self.requests)
-            } catch {
-                    print(error)
-            }
-        }
-    }
+           if(lastFrame == nil){
+               lastFrame = frame
+           }
+           
+           // grabs frame every 4 seconds
+           if (frame.timestamp - lastFrame!.timestamp >= 4) {
+               lastFrame = frame
+               if case .normal = frame.camera.trackingState {
+                   let imageRequestHandler = VNImageRequestHandler(cvPixelBuffer: frame.capturedImage, orientation: CGImagePropertyOrientation(rawValue: 6)!)
+                   do {
+                       try imageRequestHandler.perform(self.requests)
+                   } catch {
+                           print(error)
+                   }
+               }
+           }
+       }
 }

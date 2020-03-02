@@ -22,6 +22,39 @@ class ARTranslatorTests: XCTestCase {
     func testExample() {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
+        print("\n\n\nTEST TEST TEST TEST TEST TEST TEST TEST TEST\n")
+        
+        
+        let testImage = UIImage.init(named: "testImage_01.png")!
+        let test: avgColorGrabber = avgColorGrabber.init(image: testImage)
+        
+        let testRect = CGRect.init(x: 550, y: 200, width: 100, height: 100)
+        let avgColor: UIColor = test.getAvgRectColor(rect: testRect)
+        print("AVG RECT COLOR:")
+        print("r: \(avgColor)")
+        
+        print("\n\n\n")
+        print(test.getPixelColor(pos: CGPoint.init(x: 155, y: 888)))
+        print("\n\n\n")
+    }
+    
+    func avgColorGrabber_getPixelColor()
+    {
+        // THIS FUNC IS NOT RUNNING, BUT COPY-PASTING THE TEST INTO THE ABOVE
+        // FUNC WORKS, AND SO THERE IT SHALL REMAIN
+        
+        // ALL GLORY TO THE HOLY CODE
+        // ALL GLORY TO HYPNOTOAD
+        
+//        print("TEST TEST TEST TEST TEST TEST TEST TEST TEST")
+//
+//        let testImage = UIImage.init(named: "testImage_01.png")!
+//        let test: avgColorGrabber = avgColorGrabber.init(image: testImage)
+//
+//        print("\n\n\n")
+//        print(test.getPixelColor(pos: CGPoint.init(x: 1, y: 1)))
+//        print("\n\n\n")
+
     }
 
     func testPerformanceExample() {
