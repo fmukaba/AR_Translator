@@ -19,6 +19,12 @@ class ScaledElementProcessor {
     let vision = Vision.vision()
     var textRecognizer: VisionTextRecognizer!
     
+    //translated text
+    var transText = ""
+    
+    //translator
+    var translator: Translator!
+    
     init() {
         textRecognizer = vision.onDeviceTextRecognizer()
     }
@@ -47,8 +53,12 @@ class ScaledElementProcessor {
             //get the text
             let detectedText = element.text
             
+            //translate the text
+            self.transText = self.translateString(text: detectedText)
+            print(self.transText, "2")
+            
             //set textlayer
-            let textLayer = self.createTextLayer(frame: frame, text: detectedText)
+            let textLayer = self.createTextLayer(frame: frame, text: self.transText)
             
             //create scaled Element
            let scaledElement = ScaledElement(frame: frame, shapeLayer: shapeLayer, textLayer: textLayer)
@@ -70,7 +80,30 @@ class ScaledElementProcessor {
     //translate text
     private func translateString(text: String) -> String{
         
-        return text
+        let options = TranslatorOptions(sourceLanguage: .en, targetLanguage: .de)
+        let englishGermanTranslator = NaturalLanguage.naturalLanguage().translator(options: options)
+        
+        let conditions = ModelDownloadConditions(
+            allowsCellularAccess: false,
+            allowsBackgroundDownloading: true
+        )
+        englishGermanTranslator.downloadModelIfNeeded(with: conditions) { error in
+            guard error == nil else { return }
+
+            // Model downloaded successfully. Okay to start translating.
+        }
+        var texter = ""
+        englishGermanTranslator.translate(text) {
+            translatedText, error in
+            guard error == nil, let translatedText = translatedText else { return }
+            //print(translatedText)
+            texter = translatedText
+            //print(self.transText, "1")
+            // Translation succeeded.
+        }
+        
+   
+        return texter
     }
   
     //create text layer 
@@ -80,7 +113,11 @@ class ScaledElementProcessor {
         textLayer.string = text
         textLayer.font = UIFont(name: "TrebuchetMS-Bold", size: 50)
         textLayer.fontSize = frame.height
+        
+        //rectangle background color
         textLayer.backgroundColor = UIColor.white.cgColor
+        
+        //text color
         textLayer.foregroundColor = UIColor.darkGray.cgColor
         textLayer.isWrapped = true
         textLayer.alignmentMode = CATextLayerAlignmentMode.center
