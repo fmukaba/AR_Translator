@@ -70,23 +70,25 @@ class avgColorGrabber: NSObject
     
     func getAvgRectColor(rect: CGRect) -> UIColor
     {
-        // create rectangle with INTEGER coords and dimensions
-        
-        var cleanRect = rect.standardized
-        
-        
         print("\n\nDEBUG dimensions")
-        print("cleanRect.minX: \(cleanRect.minX)" )
-        print("cleanRect.maxX: \(cleanRect.maxX)" )
-        print("cleanRect.minY: \(cleanRect.minY)" )
-        print("cleanRect.maxY: \(cleanRect.maxY)" )
-        print("\n\n\n")
+        print("cleanRect.minX: \(rect.minX)" )
+        print("cleanRect.maxX: \(rect.maxX)" )
+        print("cleanRect.minY: \(rect.minY)" )
+        print("cleanRect.maxY: \(rect.maxY)" )
+        print("\n\n")
         
-        let x0 = UInt32(cleanRect.minX)
-        let y0 = UInt32(cleanRect.minY)
-        let x1 = UInt32(cleanRect.maxX)
-        let y1 = UInt32(cleanRect.maxY)
+        let x0 = UInt32(rect.minX)
+        let y0 = UInt32(rect.minY)
+        let x1 = UInt32(rect.maxX)
+        let y1 = UInt32(rect.maxY)
 
+        print("\n\nDEBUG limits")
+        print("x0: \(x0)" )
+        print("y0: \(y0)" )
+        print("x1: \(x1)" )
+        print("y1: \(y1)" )
+        print("\n\n")
+        
         var r: CGFloat = 0.0
         var g: CGFloat = 0.0
         var b: CGFloat = 0.0
@@ -111,7 +113,15 @@ class avgColorGrabber: NSObject
             }
         }
         
-        return UIColor(red: r/CGFloat(count), green: g/CGFloat(count), blue: b/CGFloat(count), alpha: a/CGFloat(count))
+        print("DEBUG r: \(r)")
+        print("DEBUG g: \(r)")
+        print("DEBUG b: \(r)")
+        print("DEBUG a: \(r)")
+        print("DEBUG count: \(count)\n")
+        
+        let color = UIColor(red: r/CGFloat(count), green: g/CGFloat(count), blue: b/CGFloat(count), alpha: a/CGFloat(count))
+        
+        return color
     }
     
 }

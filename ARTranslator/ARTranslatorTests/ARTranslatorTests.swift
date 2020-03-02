@@ -27,9 +27,11 @@ class ARTranslatorTests: XCTestCase {
         
         let testImage = UIImage.init(named: "testImage_01.png")!
         let test: avgColorGrabber = avgColorGrabber.init(image: testImage)
-
-        let testRect = CGRect.init(x: 140, y: 780, width: 60, height: 60)
-        print("AVG RECT COLOR: \(test.getAvgRectColor(rect: testRect))")
+        
+        let testRect = CGRect.init(x: 550, y: 200, width: 100, height: 100)
+        let avgColor: UIColor = test.getAvgRectColor(rect: testRect)
+        print("AVG RECT COLOR:")
+        print("r: \(avgColor)")
         
         print("\n\n\n")
         print(test.getPixelColor(pos: CGPoint.init(x: 155, y: 888)))
