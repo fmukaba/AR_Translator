@@ -16,6 +16,7 @@ struct ScaledElement {
 }
 
 class ScaledElementProcessor {
+    
     let vision = Vision.vision()
     var textRecognizer: VisionTextRecognizer!
     
@@ -30,8 +31,12 @@ class ScaledElementProcessor {
     }
 
   func process(in imageView: UIImageView, callback: @escaping (_ text: String, _ scaledElements: [ScaledElement]) -> Void) {
+    
     guard let image = imageView.image else { return }
     let visionImage = VisionImage(image: image)
+    
+    //instance of avgColorGrabber class
+    let colorGrabber = avgColorGrabber.init(image: image)
     
     textRecognizer.process(visionImage) { result, error in
       guard error == nil, let result = result, !result.text.isEmpty else {
@@ -47,6 +52,9 @@ class ScaledElementProcessor {
             //the CGrect
             let frame = self.createScaledFrame(featureFrame: element.frame, imageSize: image.size, viewFrame: imageView.frame)
             
+            //get the avg color of cgrect
+            let backgroundColor = colorGrabber.getAvgRectColor(rect: frame)
+            
             //create the actual shapelayer
            let shapeLayer = self.createShapeLayer(frame: frame)
             
@@ -58,7 +66,7 @@ class ScaledElementProcessor {
             print(self.transText, "2")
             
             //set textlayer
-            let textLayer = self.createTextLayer(frame: frame, text: self.transText)
+            let textLayer = self.createTextLayer(frame: frame, text: self.transText, background: backgroundColor as! CGColor)
             
             //create scaled Element
            let scaledElement = ScaledElement(frame: frame, shapeLayer: shapeLayer, textLayer: textLayer)
@@ -107,7 +115,7 @@ class ScaledElementProcessor {
     }
   
     //create text layer 
-    private func createTextLayer(frame: CGRect, text: String) -> CATextLayer{
+    private func createTextLayer(frame: CGRect, text: String, background: CGColor) -> CATextLayer{
         let textLayer = CATextLayer()
         textLayer.frame = frame
         textLayer.string = text
@@ -115,7 +123,7 @@ class ScaledElementProcessor {
         textLayer.fontSize = frame.height
         
         //rectangle background color
-        textLayer.backgroundColor = UIColor.white.cgColor
+        textLayer.backgroundColor = background
         
         //text color
         textLayer.foregroundColor = UIColor.darkGray.cgColor
