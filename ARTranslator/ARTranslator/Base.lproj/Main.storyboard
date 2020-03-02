@@ -7,6 +7,23 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Settings Scene-->
+        <scene sceneID="3pc-gH-Dxe">
+            <objects>
+                <viewController id="mwt-3K-neX" userLabel="Settings Scene" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="k9n-tK-cXD">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="3kG-xi-zS8"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Settings" id="BGl-Rj-5g2"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RAk-bi-Yrj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2812" y="593"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -84,7 +101,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2812" y="225.33733133433284"/>
+            <point key="canvasLocation" x="2812" y="-175"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="PQW-F3-4QB">
@@ -109,7 +126,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m2f-zp-b32" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2812" y="-574.36281859070471"/>
+            <point key="canvasLocation" x="2812" y="-859"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="kzZ-8H-0Tc">
@@ -125,6 +142,7 @@
                     <connections>
                         <segue destination="fyc-XU-yeW" kind="relationship" relationship="viewControllers" id="E7P-DG-LwO"/>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="DcC-9c-z4V"/>
+                        <segue destination="mwt-3K-neX" kind="relationship" relationship="viewControllers" id="tP2-OR-DLp"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ed4-fA-YIV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
