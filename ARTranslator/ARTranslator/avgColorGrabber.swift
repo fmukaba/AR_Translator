@@ -114,9 +114,9 @@ class avgColorGrabber: NSObject
         }
         
         print("DEBUG r: \(r)")
-        print("DEBUG g: \(r)")
-        print("DEBUG b: \(r)")
-        print("DEBUG a: \(r)")
+        print("DEBUG g: \(g)")
+        print("DEBUG b: \(b)")
+        print("DEBUG a: \(a)")
         print("DEBUG count: \(count)\n")
         
         let color = UIColor(red: r/CGFloat(count), green: g/CGFloat(count), blue: b/CGFloat(count), alpha: a/CGFloat(count))
