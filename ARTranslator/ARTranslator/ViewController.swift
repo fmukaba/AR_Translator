@@ -141,9 +141,3 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         }
       }
     }
-
-
-
-    
-    
-

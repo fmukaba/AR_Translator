@@ -177,7 +177,6 @@ class ARViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate{
         
         imageView.image = mirroredImage
         
-        
         let imageMetadata = VisionImageMetadata()
 
         // Initialize a VisionImage object with the given UIImage.
@@ -196,14 +195,12 @@ class ARViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate{
             for block in result.blocks {
                 // line by line
                 for line in block.lines {
-                // print(line.text, " ")
-                    
+                 print(line.text, " ")
                     for element in line.elements {
                                 
                     }
                 }
             }
-                    
         }
     }
 
