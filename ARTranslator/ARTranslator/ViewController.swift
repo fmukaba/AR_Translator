@@ -6,7 +6,6 @@
 //  Copyright © 2020 Francois Mukaba. All rights reserved.
 
 import UIKit
-import FirebaseMLVision
 import FirebaseMLNLTranslate
 import UIKit
 import MobileCoreServices
