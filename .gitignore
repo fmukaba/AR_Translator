@@ -16,3 +16,4 @@ Pods/
 
 ## User settings
 xcuserdata/
+*.xcuserdata
