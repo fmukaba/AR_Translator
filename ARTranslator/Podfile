@@ -13,6 +13,7 @@ target 'ARTranslator' do
   target 'ARTranslatorTests' do
     inherit! :search_paths
     # Pods for testing
+    
   end
 
 end
