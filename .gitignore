@@ -2,6 +2,7 @@
 
 .DS_Store
 Pods/
+Podfile.lock
 
 ## Xcode Patch
 *.xcodeproj/*
