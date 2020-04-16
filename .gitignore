@@ -2,8 +2,6 @@
 
 .DS_Store
 Pods/
-ARTranslator/ARTranslator.xcodeproj/project.pbxproj
-
 
 ## Xcode Patch
 *.xcodeproj/*
