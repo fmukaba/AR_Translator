@@ -136,6 +136,26 @@ class ScaledElementProcessor {
         textLayer.contentsScale = UIScreen.main.scale
         return textLayer
     }
+<<<<<<< Updated upstream
+=======
+
+  private func createShapeLayer(frame: CGRect) -> CAShapeLayer {
+    let bpath = UIBezierPath(rect: frame)
+    let shapeLayer = CAShapeLayer()
+    shapeLayer.path = bpath.cgPath
+    shapeLayer.strokeColor = Constants.lineColor
+    shapeLayer.fillColor = Constants.fillColor
+    shapeLayer.lineWidth = Constants.lineWidth
+    return shapeLayer
+  }
+  
+  
+  private func createScaledFrame(featureFrame: CGRect, imageSize: CGSize, viewFrame: CGRect) -> CGRect {
+    let viewSize = viewFrame.size
+    
+    let resolutionView = viewSize.width / viewSize.height
+    let resolutionImage = imageSize.width / imageSize.height
+>>>>>>> Stashed changes
     
     private func createShapeLayer(frame: CGRect) -> CAShapeLayer {
         let bpath = UIBezierPath(rect: frame)
