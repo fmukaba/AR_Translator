@@ -2,3 +2,18 @@
 
 .DS_Store
 Pods/
+
+## Xcode Patch
+*.xcodeproj/*
+!*.xcodeproj/project.pbxproj
+!*.xcodeproj/xcshareddata/
+!*.xcworkspace/contents.xcworkspacedata
+/*.gcno
+
+### Xcode Patch ###
+**/xcshareddata/WorkspaceSettings.xcsettings
+
+
+## User settings
+xcuserdata/
+*.xcuserdata

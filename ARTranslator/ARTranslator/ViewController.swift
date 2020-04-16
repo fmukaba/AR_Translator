@@ -118,14 +118,20 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
       present(vc, animated: true, completion: nil)
     }
     
+    //gets rid of the previous overlaid text boxes
     private func removeFrames() {
         guard let sublayers = frameSublayer.sublayers else { return }
         for sublayer in sublayers {
           sublayer.removeFromSuperlayer()
         }
+        guard let sublayers2 = textLayer.sublayers else { return }
+        for sublayer in sublayers2 {
+            sublayer.removeFromSuperlayer()
+        }
       }
       
-      // 1
+    
+    //creates the overlaying frames
       private func drawFeatures(in imageView: UIImageView, completion: (() -> Void)? = nil) {
         removeFrames()
         processor.process(in: imageView) { text, elements in

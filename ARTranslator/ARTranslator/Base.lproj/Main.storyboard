@@ -7,6 +7,23 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Settings Scene-->
+        <scene sceneID="3pc-gH-Dxe">
+            <objects>
+                <viewController id="mwt-3K-neX" userLabel="Settings Scene" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="k9n-tK-cXD">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="3kG-xi-zS8"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Settings" id="BGl-Rj-5g2"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RAk-bi-Yrj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2812" y="593"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -57,9 +74,17 @@
                                     <action selector="shareBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="OfR-9t-JHf"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r7x-RB-lpk">
-                                <rect key="frame" x="16" y="551" width="90" height="33"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MkJ-lL-Z0t">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="500"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r7x-RB-lpk">
+                                <rect key="frame" x="0.0" y="585" width="83" height="33"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="33" id="GbB-Na-2hf"/>
+                                    <constraint firstAttribute="width" secondItem="r7x-RB-lpk" secondAttribute="height" multiplier="83:33" id="Vsz-e7-k87"/>
+                                    <constraint firstAttribute="width" constant="83" id="agI-5t-NPH"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Extract" image="text.aligncenter" catalog="system">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -69,12 +94,14 @@
                                     <action selector="extractBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WvP-De-hNq"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MkJ-lL-Z0t">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="500"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="r7x-RB-lpk" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="WCW-MZ-z5y"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="r7x-RB-lpk" secondAttribute="bottom" id="cBP-wM-hYv"/>
+                            <constraint firstItem="r7x-RB-lpk" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="kRv-MR-Rch"/>
+                            <constraint firstItem="r7x-RB-lpk" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="vQv-Eo-WYO"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="featured" id="0LO-nn-6or"/>
@@ -84,7 +111,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2812" y="225.33733133433284"/>
+            <point key="canvasLocation" x="2812" y="-175"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="PQW-F3-4QB">
@@ -109,7 +136,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m2f-zp-b32" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2812" y="-574.36281859070471"/>
+            <point key="canvasLocation" x="2812" y="-859"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="kzZ-8H-0Tc">
@@ -117,6 +144,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="H68-Qb-EBB" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="pbD-AF-xYv">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="selectedImageTintColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -124,6 +152,7 @@
                     <connections>
                         <segue destination="fyc-XU-yeW" kind="relationship" relationship="viewControllers" id="E7P-DG-LwO"/>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="DcC-9c-z4V"/>
+                        <segue destination="mwt-3K-neX" kind="relationship" relationship="viewControllers" id="tP2-OR-DLp"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ed4-fA-YIV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
