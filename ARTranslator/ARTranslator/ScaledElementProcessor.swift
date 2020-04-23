@@ -73,26 +73,14 @@ class ScaledElementProcessor {
                             print(self.transText, "2") //testing
                         }
                         
-                        serialQueue.async {
-                            //set textlayer
-                            let textLayer = self.createTextLayer(frame: frame, text: self.transText, background: backgroundColor)
-                            //create scaled Element
-                            let scaledElement = ScaledElement(frame: frame, shapeLayer: shapeLayer, textLayer: textLayer)
-                            
-                            scaledElements.append(scaledElement)
-                        }
-                    
-                        //translate the text
-//                        self.transText = self.translateString(text: detectedText)
-//                        print(self.transText, "2") //testing
-                        
-                        
                         //set textlayer
                         let textLayer = self.createTextLayer(frame: frame, text: self.transText, background: backgroundColor)
                         //create scaled Element
                         let scaledElement = ScaledElement(frame: frame, shapeLayer: shapeLayer, textLayer: textLayer)
                         
                         scaledElements.append(scaledElement)
+                        
+                        self.transText = ""
                         
                         //print out detected text
                         print(element.text, " ")
@@ -108,6 +96,8 @@ class ScaledElementProcessor {
     //translate text
     private func translateString(text: String) -> String{
         
+        let translatedTextt = ""
+        
         let conditions = ModelDownloadConditions(
             allowsCellularAccess: false,
             allowsBackgroundDownloading: true
@@ -120,17 +110,16 @@ class ScaledElementProcessor {
         
         englishGermanTranslator?.translate(text) {
             translatedText, error in
-            guard error == nil, let translatedText = translatedText else { return }
+            guard error == nil, translatedTextt == translatedText! else { return }
             
-            print(translatedText)
+            //print(translatedText)
             //set global variable "transText" to our translated text
-            self.transText = translatedText
-            print(self.transText, "1")
+            //self.transText = translatedText
+            //print(self.transText, "1")
             // Translation succeeded.
         }
         
-//        print(transText, "2")
-        return transText
+        return translatedTextt
         
     }
     
