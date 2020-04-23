@@ -72,6 +72,7 @@ class ScaledElementProcessor {
                             self.transText = self.translateString(text: detectedText)
                             print(self.transText, "2") //testing
                         }
+                        
                         serialQueue.async {
                             //set textlayer
                             let textLayer = self.createTextLayer(frame: frame, text: self.transText, background: backgroundColor)
@@ -87,13 +88,11 @@ class ScaledElementProcessor {
                         
                         
                         //set textlayer
-                        //let textLayer = self.createTextLayer(frame: frame, text: self.transText, background: backgroundColor)
-                        
+                        let textLayer = self.createTextLayer(frame: frame, text: self.transText, background: backgroundColor)
                         //create scaled Element
-                       // let scaledElement = ScaledElement(frame: frame, shapeLayer: shapeLayer, textLayer: textLayer)
-                        // let scaledElement = ScaledElement(frame: frame, textLayer: textLayer)
+                        let scaledElement = ScaledElement(frame: frame, shapeLayer: shapeLayer, textLayer: textLayer)
                         
-                        //scaledElements.append(scaledElement)
+                        scaledElements.append(scaledElement)
                         
                         //print out detected text
                         print(element.text, " ")
