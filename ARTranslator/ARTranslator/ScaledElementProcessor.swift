@@ -66,18 +66,34 @@ class ScaledElementProcessor {
                         //get the text
                         let detectedText = element.text
                         
+                        let serialQueue = DispatchQueue(label: "swiftlee.serial.queue")
+                        serialQueue.async {
+                            //translate the text
+                            self.transText = self.translateString(text: detectedText)
+                            print(self.transText, "2") //testing
+                        }
+                        serialQueue.async {
+                            //set textlayer
+                            let textLayer = self.createTextLayer(frame: frame, text: self.transText, background: backgroundColor)
+                            //create scaled Element
+                            let scaledElement = ScaledElement(frame: frame, shapeLayer: shapeLayer, textLayer: textLayer)
+                            
+                            scaledElements.append(scaledElement)
+                        }
+                    
                         //translate the text
-                        self.transText = self.translateString(text: detectedText)
-                        print(self.transText, "2")
+//                        self.transText = self.translateString(text: detectedText)
+//                        print(self.transText, "2") //testing
+                        
                         
                         //set textlayer
-                        let textLayer = self.createTextLayer(frame: frame, text: self.transText, background: backgroundColor)
+                        //let textLayer = self.createTextLayer(frame: frame, text: self.transText, background: backgroundColor)
                         
                         //create scaled Element
-                        let scaledElement = ScaledElement(frame: frame, shapeLayer: shapeLayer, textLayer: textLayer)
+                       // let scaledElement = ScaledElement(frame: frame, shapeLayer: shapeLayer, textLayer: textLayer)
                         // let scaledElement = ScaledElement(frame: frame, textLayer: textLayer)
                         
-                        scaledElements.append(scaledElement)
+                        //scaledElements.append(scaledElement)
                         
                         //print out detected text
                         print(element.text, " ")
@@ -92,7 +108,6 @@ class ScaledElementProcessor {
     
     //translate text
     private func translateString(text: String) -> String{
-        var transText = ""
         
         let conditions = ModelDownloadConditions(
             allowsCellularAccess: false,
@@ -109,11 +124,13 @@ class ScaledElementProcessor {
             guard error == nil, let translatedText = translatedText else { return }
             
             print(translatedText)
-            transText = translatedText
+            //set global variable "transText" to our translated text
+            self.transText = translatedText
             print(self.transText, "1")
             // Translation succeeded.
         }
-        print(transText, "2")
+        
+//        print(transText, "2")
         return transText
         
     }
@@ -136,26 +153,28 @@ class ScaledElementProcessor {
         textLayer.contentsScale = UIScreen.main.scale
         return textLayer
     }
-<<<<<<< Updated upstream
-=======
-
-  private func createShapeLayer(frame: CGRect) -> CAShapeLayer {
-    let bpath = UIBezierPath(rect: frame)
-    let shapeLayer = CAShapeLayer()
-    shapeLayer.path = bpath.cgPath
-    shapeLayer.strokeColor = Constants.lineColor
-    shapeLayer.fillColor = Constants.fillColor
-    shapeLayer.lineWidth = Constants.lineWidth
-    return shapeLayer
-  }
-  
-  
-  private func createScaledFrame(featureFrame: CGRect, imageSize: CGSize, viewFrame: CGRect) -> CGRect {
-    let viewSize = viewFrame.size
     
-    let resolutionView = viewSize.width / viewSize.height
-    let resolutionImage = imageSize.width / imageSize.height
->>>>>>> Stashed changes
+//<<<<<<< Updated upstream
+//=======
+//
+//  private func createShapeLayer(frame: CGRect) -> CAShapeLayer {
+//    let bpath = UIBezierPath(rect: frame)
+//    let shapeLayer = CAShapeLayer()
+//    shapeLayer.path = bpath.cgPath
+//    shapeLayer.strokeColor = Constants.lineColor
+//    shapeLayer.fillColor = Constants.fillColor
+//    shapeLayer.lineWidth = Constants.lineWidth
+//    return shapeLayer
+//  }
+//
+//
+//  private func createScaledFrame(featureFrame: CGRect, imageSize: CGSize, viewFrame: CGRect) -> CGRect {
+//    let viewSize = viewFrame.size
+//
+//    let resolutionView = viewSize.width / viewSize.height
+//    let resolutionImage = imageSize.width / imageSize.height
+//>>>>>>> Stashed changes
+ 
     
     private func createShapeLayer(frame: CGRect) -> CAShapeLayer {
         let bpath = UIBezierPath(rect: frame)

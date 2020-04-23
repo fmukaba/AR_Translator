@@ -37,7 +37,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         
     }
 
-
+    //take photo from camera
     @IBAction func takePhoto(_ sender: Any) {
         imagePicker =  UIImagePickerController()
         imagePicker.delegate = self
@@ -45,6 +45,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         present(imagePicker, animated: true, completion: nil)
     }
     
+    //save photo to gallery 
     @IBAction func save(_ sender: Any) {
         guard let image = imageview.image else { return }
 
