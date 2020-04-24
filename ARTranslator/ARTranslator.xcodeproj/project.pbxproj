@@ -19,6 +19,7 @@
 		C636127623D9247A000A1F24 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C636127423D9247A000A1F24 /* LaunchScreen.storyboard */; };
 		C636128123D9247B000A1F24 /* ARTranslatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636128023D9247B000A1F24 /* ARTranslatorTests.swift */; };
 		C6F7F64F23DF8A6600630C91 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C6F7F64E23DF8A6600630C91 /* GoogleService-Info.plist */; };
+		CD957253245228BF0022DE99 /* translationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD957252245228BF0022DE99 /* translationViewController.swift */; };
 		DFC6606E84D2565371881B91 /* Pods_ARTranslatorTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EC7328C34EA7EB9AE34498C /* Pods_ARTranslatorTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -54,6 +55,7 @@
 		C636128023D9247B000A1F24 /* ARTranslatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARTranslatorTests.swift; sourceTree = "<group>"; };
 		C636128223D9247B000A1F24 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C6F7F64E23DF8A6600630C91 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		CD957252245228BF0022DE99 /* translationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = translationViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +124,7 @@
 				C636126623D92479000A1F24 /* AppDelegate.swift */,
 				C636126823D92479000A1F24 /* SceneDelegate.swift */,
 				C636126A23D92479000A1F24 /* ViewController.swift */,
+				CD957252245228BF0022DE99 /* translationViewController.swift */,
 				20DDE5B6240B2FD200925265 /* avgColorGrabber.swift */,
 				C636126C23D92479000A1F24 /* Main.storyboard */,
 				C622222723F4A334003DF2B0 /* ARViewController.swift */,
@@ -329,6 +332,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD957253245228BF0022DE99 /* translationViewController.swift in Sources */,
 				C636126B23D92479000A1F24 /* ViewController.swift in Sources */,
 				C636126723D92479000A1F24 /* AppDelegate.swift in Sources */,
 				C622222823F4A334003DF2B0 /* ARViewController.swift in Sources */,

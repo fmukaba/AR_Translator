@@ -115,7 +115,6 @@ class ScaledElementProcessor {
         }
         print(transText, "2")
         return transText
-        
     }
     
     //create text layer 
