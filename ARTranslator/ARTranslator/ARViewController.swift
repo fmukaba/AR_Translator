@@ -152,42 +152,39 @@ class ARViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate{
         
     }
     
-    private func createVisionImage() -> VisionImage? {
+    private func createVisionImage() -> UIImage? {
         guard let pixbuff : CVPixelBuffer? = lastFrame?.capturedImage else {
          return nil
        }
         
        let ciImage = CIImage(cvPixelBuffer: pixbuff!)
-
        let context = CIContext.init(options: nil)
 
        guard let cgImage = context.createCGImage(ciImage, from: ciImage.extent) else {
          return nil
        }
-      
-        let rotatedImage =
-        UIImage.init(cgImage: cgImage, scale: 1.0, orientation: .up)
-      
-        guard let rotatedCGImage = rotatedImage.cgImage else {
-         return nil
-       }
-       
-        let mirroredImage = UIImage.init(
-        cgImage: rotatedCGImage, scale: 1.0, orientation: .left)
         
-        imageView.image = mirroredImage
-        
-        let imageMetadata = VisionImageMetadata()
+        let createdImage =
+            UIImage.init(cgImage: cgImage, scale: 1.0, orientation: .right)
 
-        // Initialize a VisionImage object with the given UIImage.
-        let visionImage = VisionImage(image: mirroredImage)
-        visionImage.metadata = imageMetadata
-       return visionImage
+//        guard let rotatedCGImage = rotatedImage.cgImage else {
+//         return nil
+//       }
+
+        imageView.image = createdImage.fixOrientation()
+        return createdImage.fixOrientation()
      }
     
     func processImage() {
-        let visionImage = createVisionImage()
-        textRecognizer?.process(visionImage!) { result, error in
+        guard let image = createVisionImage() else { return }
+        let imageMetadata = VisionImageMetadata()
+        imageMetadata.orientation = UIUtilities.visionImageOrientation(from: image.imageOrientation)
+        
+        // Initialize a VisionImage object with the given UIImage.
+        let visionImage = VisionImage(image: image)
+       
+        visionImage.metadata = imageMetadata
+        textRecognizer?.process(visionImage) { result, error in
 
             guard error == nil, let result = result else {
                 return
@@ -197,11 +194,11 @@ class ARViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate{
                 for line in block.lines {
                  print(line.text, " ")
                     for element in line.elements {
-                                
+
                     }
                 }
             }
-        }
+       }
     }
 
     func session(_ session: ARSession, didUpdate frame: ARFrame) {
