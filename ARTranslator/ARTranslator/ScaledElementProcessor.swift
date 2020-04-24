@@ -17,8 +17,6 @@ struct ScaledElement {
 
 class ScaledElementProcessor {
     
-    
-    
     let vision = Vision.vision()
     var textRecognizer: VisionTextRecognizer!
     
@@ -29,6 +27,8 @@ class ScaledElementProcessor {
     var translator: Translator!
     var englishGermanTranslator : Translator?
     
+    //initialize with the translator change later so that it initalize with user
+    //picked language 
     init() {
         textRecognizer = vision.onDeviceTextRecognizer()
         let options = TranslatorOptions(sourceLanguage: .en, targetLanguage: .de)
@@ -75,12 +75,11 @@ class ScaledElementProcessor {
                         
                         //set textlayer
                         let textLayer = self.createTextLayer(frame: frame, text: self.transText, background: backgroundColor)
+                        
                         //create scaled Element
                         let scaledElement = ScaledElement(frame: frame, shapeLayer: shapeLayer, textLayer: textLayer)
                         
                         scaledElements.append(scaledElement)
-                        
-                        self.transText = ""
                         
                         //print out detected text
                         print(element.text, " ")
@@ -96,8 +95,6 @@ class ScaledElementProcessor {
     //translate text
     private func translateString(text: String) -> String{
         
-        let translatedTextt = ""
-        
         let conditions = ModelDownloadConditions(
             allowsCellularAccess: false,
             allowsBackgroundDownloading: true
@@ -105,21 +102,17 @@ class ScaledElementProcessor {
         englishGermanTranslator?.downloadModelIfNeeded(with: conditions) { error in
             guard error == nil else { return }
             
-            // Model downloaded successfully. Okay to start translating.
         }
         
         englishGermanTranslator?.translate(text) {
             translatedText, error in
-            guard error == nil, translatedTextt == translatedText! else { return }
+            guard error == nil, let translatedText = translatedText else { return }
             
-            //print(translatedText)
             //set global variable "transText" to our translated text
-            //self.transText = translatedText
-            //print(self.transText, "1")
-            // Translation succeeded.
+            self.transText = translatedText
         }
         
-        return translatedTextt
+        return transText
         
     }
     
@@ -128,6 +121,7 @@ class ScaledElementProcessor {
         let textLayer = CATextLayer()
         textLayer.frame = frame
         textLayer.string = text
+        //change font size to dynamic
         textLayer.font = UIFont(name: "TrebuchetMS-Bold", size: 50)
         textLayer.fontSize = frame.height
         
@@ -141,29 +135,9 @@ class ScaledElementProcessor {
         textLayer.contentsScale = UIScreen.main.scale
         return textLayer
     }
+
     
-//<<<<<<< Updated upstream
-//=======
-//
-//  private func createShapeLayer(frame: CGRect) -> CAShapeLayer {
-//    let bpath = UIBezierPath(rect: frame)
-//    let shapeLayer = CAShapeLayer()
-//    shapeLayer.path = bpath.cgPath
-//    shapeLayer.strokeColor = Constants.lineColor
-//    shapeLayer.fillColor = Constants.fillColor
-//    shapeLayer.lineWidth = Constants.lineWidth
-//    return shapeLayer
-//  }
-//
-//
-//  private func createScaledFrame(featureFrame: CGRect, imageSize: CGSize, viewFrame: CGRect) -> CGRect {
-//    let viewSize = viewFrame.size
-//
-//    let resolutionView = viewSize.width / viewSize.height
-//    let resolutionImage = imageSize.width / imageSize.height
-//>>>>>>> Stashed changes
- 
-    
+    //create the CAShapeLayer
     private func createShapeLayer(frame: CGRect) -> CAShapeLayer {
         let bpath = UIBezierPath(rect: frame)
         let shapeLayer = CAShapeLayer()
@@ -174,6 +148,7 @@ class ScaledElementProcessor {
         return shapeLayer
     }
     
+    //create and return the CGRect
     private func createScaledFrame(featureFrame: CGRect, imageSize: CGSize, viewFrame: CGRect) -> CGRect {
         let viewSize = viewFrame.size
         
@@ -201,8 +176,7 @@ class ScaledElementProcessor {
         return CGRect(x: featurePointXScaled, y: featurePointYScaled, width: featureWidthScaled, height: featureHeightScaled)
     }
     
-    // MARK: - private
-    
+    //constants for the color of the cgrect border
     private enum Constants {
         static let lineWidth: CGFloat = 3.0
         static let lineColor = UIColor.green.cgColor
