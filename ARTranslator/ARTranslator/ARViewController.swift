@@ -157,28 +157,30 @@ class ARViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate{
          return nil
        }
         
-        switch UIDevice.current.orientation{
+        let ciImage = CIImage(cvPixelBuffer: pixbuff!)
+             let context = CIContext.init(options: nil)
+        
+        guard let cgImage = context.createCGImage(ciImage, from: ciImage.extent) else {
+                return nil
+              }
+        
+        // fix orientation of image depending on device orientation
+        var pos: UIImage.Orientation?
+        switch UIDevice.current.orientation {
             case .portrait:
-                print("portrait")
+                pos = .right
             case .portraitUpsideDown:
-                print("PortraitUpsideDown")
+                pos = .left
             case .landscapeLeft:
-                print("LandscapeLeft")
+                pos = .up
             case .landscapeRight:
-                print("LandscapeRight")
+                pos = .down
             default:
-                print("Another")
+                pos = .right
         }
         
-       let ciImage = CIImage(cvPixelBuffer: pixbuff!)
-       let context = CIContext.init(options: nil)
-
-       guard let cgImage = context.createCGImage(ciImage, from: ciImage.extent) else {
-         return nil
-       }
-        
         let createdImage =
-            UIImage.init(cgImage: cgImage, scale: 1.0, orientation: .down)
+            UIImage.init(cgImage: cgImage, scale: 1.0, orientation: pos!)
         //.right portait mode, .up landscape L, .down Lanscape R
         imageView.image = createdImage.fixOrientation()
         return createdImage.fixOrientation()
@@ -201,7 +203,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate{
             for block in result.blocks {
                 // line by line
                 for line in block.lines {
-                 print(line.text, " ")
+                    print(line.text, " ")
                     for element in line.elements {
 
                     }
