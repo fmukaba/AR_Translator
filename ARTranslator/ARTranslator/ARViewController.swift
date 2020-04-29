@@ -157,6 +157,19 @@ class ARViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate{
          return nil
        }
         
+        switch UIDevice.current.orientation{
+            case .portrait:
+                print("portrait")
+            case .portraitUpsideDown:
+                print("PortraitUpsideDown")
+            case .landscapeLeft:
+                print("LandscapeLeft")
+            case .landscapeRight:
+                print("LandscapeRight")
+            default:
+                print("Another")
+        }
+        
        let ciImage = CIImage(cvPixelBuffer: pixbuff!)
        let context = CIContext.init(options: nil)
 
@@ -165,12 +178,8 @@ class ARViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate{
        }
         
         let createdImage =
-            UIImage.init(cgImage: cgImage, scale: 1.0, orientation: .right)
-
-//        guard let rotatedCGImage = rotatedImage.cgImage else {
-//         return nil
-//       }
-
+            UIImage.init(cgImage: cgImage, scale: 1.0, orientation: .down)
+        //.right portait mode, .up landscape L, .down Lanscape R
         imageView.image = createdImage.fixOrientation()
         return createdImage.fixOrientation()
      }
