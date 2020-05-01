@@ -42,7 +42,7 @@ class ScaledElementProcessor {
         
         //instance of avgColorGrabber class
         let colorGrabber = avgColorGrabber.init(image: image)
-        
+    
         textRecognizer.process(visionImage) { result, error in
             guard error == nil, let result = result, !result.text.isEmpty else {
                 callback("", [])

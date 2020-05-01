@@ -72,6 +72,9 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
        }
     
     @IBAction func gallery(_ sender: Any) {
+        
+        imageview.layer.sublayers?.removeAll()
+        
         imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = .photoLibrary
@@ -80,10 +83,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     
     //MARK: - Text detection
     @IBAction func extractBtn(_ sender: Any) {
-        //clear previous translations
-        //add here
-        imageview.layer.removeFromSuperlayer()
-        imageview.layer.removeFromSuperlayer()
         
         imageview.layer.addSublayer(frameSublayer)
         imageview.layer.addSublayer(textLayer)
@@ -137,18 +136,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         }
       }
     
-    //get rid of the overlaying frames
-    private func removePreviousFrames(in imageView: UIImageView, completion: (() -> Void)? = nil){
-        removeFrames()
-        processor.process(in: imageView) { text, elements in
-            elements.forEach() { element in
-                self.frameSublayer.removeFromSuperlayer()
-                self.frameSublayer.removeFromSuperlayer()
-            }
-          }
-        }
-    
-      
     
     //creates the overlaying frames
       private func drawFeatures(in imageView: UIImageView, completion: (() -> Void)? = nil) {
