@@ -80,6 +80,11 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     
     //MARK: - Text detection
     @IBAction func extractBtn(_ sender: Any) {
+        //clear previous translations
+        //add here
+        imageview.layer.removeFromSuperlayer()
+        imageview.layer.removeFromSuperlayer()
+        
         imageview.layer.addSublayer(frameSublayer)
         imageview.layer.addSublayer(textLayer)
         //add textview here 
@@ -131,6 +136,18 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
             sublayer.removeFromSuperlayer()
         }
       }
+    
+    //get rid of the overlaying frames
+    private func removePreviousFrames(in imageView: UIImageView, completion: (() -> Void)? = nil){
+        removeFrames()
+        processor.process(in: imageView) { text, elements in
+            elements.forEach() { element in
+                self.frameSublayer.removeFromSuperlayer()
+                self.frameSublayer.removeFromSuperlayer()
+            }
+          }
+        }
+    
       
     
     //creates the overlaying frames

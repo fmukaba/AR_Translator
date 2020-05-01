@@ -58,7 +58,7 @@ class ScaledElementProcessor {
                         let frame = self.createScaledFrame(featureFrame: element.frame, imageSize: image.size, viewFrame: imageView.frame)
                         
                         //get the avg color of cgrect
-                        let backgroundColor = colorGrabber.getAvgRectColor(rect: frame).cgColor
+                        let backgroundColor = colorGrabber.getAvgRectColor(rect: element.frame).cgColor
                         
                         //create the actual shapelayer
                         let shapeLayer = self.createShapeLayer(frame: frame)
