@@ -16,9 +16,10 @@
 		C636126B23D92479000A1F24 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636126A23D92479000A1F24 /* ViewController.swift */; };
 		C636126E23D92479000A1F24 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C636126C23D92479000A1F24 /* Main.storyboard */; };
 		C636127123D92479000A1F24 /* ARTranslator.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C636126F23D92479000A1F24 /* ARTranslator.xcdatamodeld */; };
-		C636127323D9247A000A1F24 /* testImage_01.png in Resources */ = {isa = PBXBuildFile; fileRef = C636127223D9247A000A1F24 /* testImage_01.png */; };
 		C636127623D9247A000A1F24 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C636127423D9247A000A1F24 /* LaunchScreen.storyboard */; };
 		C636128123D9247B000A1F24 /* ARTranslatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636128023D9247B000A1F24 /* ARTranslatorTests.swift */; };
+		C6F2A6102462320A00333D67 /* UIUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F2A60F2462320A00333D67 /* UIUtilities.swift */; };
+		C6F2A6122462325800333D67 /* +UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F2A6112462325800333D67 /* +UIImage.swift */; };
 		C6F7F64F23DF8A6600630C91 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C6F7F64E23DF8A6600630C91 /* GoogleService-Info.plist */; };
 		DFC6606E84D2565371881B91 /* Pods_ARTranslatorTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EC7328C34EA7EB9AE34498C /* Pods_ARTranslatorTests.framework */; };
 /* End PBXBuildFile section */
@@ -49,12 +50,13 @@
 		C636126A23D92479000A1F24 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C636126D23D92479000A1F24 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C636127023D92479000A1F24 /* ARTranslator.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ARTranslator.xcdatamodel; sourceTree = "<group>"; };
-		C636127223D9247A000A1F24 /* testImage_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = testImage_01.png; path = /Users/Evan/Desktop/testImage_01.png; sourceTree = "<absolute>"; };
 		C636127523D9247A000A1F24 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C636127723D9247A000A1F24 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C636127C23D9247B000A1F24 /* ARTranslatorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ARTranslatorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C636128023D9247B000A1F24 /* ARTranslatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARTranslatorTests.swift; sourceTree = "<group>"; };
 		C636128223D9247B000A1F24 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C6F2A60F2462320A00333D67 /* UIUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIUtilities.swift; sourceTree = "<group>"; };
+		C6F2A6112462325800333D67 /* +UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+UIImage.swift"; sourceTree = "<group>"; };
 		C6F7F64E23DF8A6600630C91 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -127,12 +129,13 @@
 				20DDE5B6240B2FD200925265 /* avgColorGrabber.swift */,
 				C636126C23D92479000A1F24 /* Main.storyboard */,
 				C622222723F4A334003DF2B0 /* ARViewController.swift */,
-				C636127223D9247A000A1F24 /* testImage_01.png */,
 				C636127423D9247A000A1F24 /* LaunchScreen.storyboard */,
 				C636127723D9247A000A1F24 /* Info.plist */,
 				C6F7F64E23DF8A6600630C91 /* GoogleService-Info.plist */,
 				C636126F23D92479000A1F24 /* ARTranslator.xcdatamodeld */,
 				3596D3F523FC673A00D27736 /* ScaledElementProcessor.swift */,
+				C6F2A60F2462320A00333D67 /* UIUtilities.swift */,
+				C6F2A6112462325800333D67 /* +UIImage.swift */,
 			);
 			path = ARTranslator;
 			sourceTree = "<group>";
@@ -233,7 +236,6 @@
 			files = (
 				C636127623D9247A000A1F24 /* LaunchScreen.storyboard in Resources */,
 				C6F7F64F23DF8A6600630C91 /* GoogleService-Info.plist in Resources */,
-				C636127323D9247A000A1F24 /* testImage_01.png in Resources */,
 				C636126E23D92479000A1F24 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -335,10 +337,12 @@
 			files = (
 				C636126B23D92479000A1F24 /* ViewController.swift in Sources */,
 				C636126723D92479000A1F24 /* AppDelegate.swift in Sources */,
+				C6F2A6122462325800333D67 /* +UIImage.swift in Sources */,
 				C622222823F4A334003DF2B0 /* ARViewController.swift in Sources */,
 				C636127123D92479000A1F24 /* ARTranslator.xcdatamodeld in Sources */,
 				20DDE5B7240B2FD300925265 /* avgColorGrabber.swift in Sources */,
 				C636126923D92479000A1F24 /* SceneDelegate.swift in Sources */,
+				C6F2A6102462320A00333D67 /* UIUtilities.swift in Sources */,
 				3596D3F623FC673A00D27736 /* ScaledElementProcessor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -502,14 +506,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 83DXAQWLN9;
+				DEVELOPMENT_TEAM = 57ZAM578YW;
 				INFOPLIST_FILE = ARTranslator/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.evanjohnson;
+				PRODUCT_BUNDLE_IDENTIFIER = com.evanj;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -524,14 +528,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 83DXAQWLN9;
+				DEVELOPMENT_TEAM = 57ZAM578YW;
 				INFOPLIST_FILE = ARTranslator/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.evanjohnson;
+				PRODUCT_BUNDLE_IDENTIFIER = com.evanj;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
