@@ -21,7 +21,7 @@ class ScaledElementProcessor {
     var textRecognizer: VisionTextRecognizer!
     
     //translated text
-    //var transText = ""
+    var transText = ""
     
     //translator
     var translator: Translator!
@@ -69,19 +69,33 @@ class ScaledElementProcessor {
                         print(element.text, ":detected text")
                         
                         //translated text
-                        let translatedDetectedText = self.translateString(text: detectedText)
+                        //need to change
+                        //let translatedDetectedText = self.translateString(text: detectedText)
+                        
+                        //try queue here
+                        let serialQueue = DispatchQueue(label: "com.queue.serial")
+                        serialQueue.sync {
+                            self.translateStringNEW(text: detectedText)
+                        }
                         
                         //test to see if func that translates text is working
-                        print(translatedDetectedText, ":Translated Text in element loop")
+                        //need to change
+                        //print(translatedDetectedText, ":Translated Text in element loop")
+                        print(self.transText, ":Translated Text in element loop")
                         
                         //actual UI changes here
                         //set textlayer
-                        let textLayer = self.createTextLayer(frame: frame, text: translatedDetectedText, background: backgroundColor)
+                        //need to change
                         
-                        //create scaled Element
-                        let scaledElement = ScaledElement(frame: frame, shapeLayer: shapeLayer, textLayer: textLayer)
+                        serialQueue.sync {
+                            let textLayer = self.createTextLayer(frame: frame, text: self.transText, background: backgroundColor)
+                            
+                            //create scaled Element
+                            let scaledElement = ScaledElement(frame: frame, shapeLayer: shapeLayer, textLayer: textLayer)
+                            
+                            scaledElements.append(scaledElement)
+                        }
                         
-                        scaledElements.append(scaledElement)
                         
                     }
                 }
@@ -89,6 +103,29 @@ class ScaledElementProcessor {
             
             callback(result.text, scaledElements)
         }
+    }
+    
+    //new translate text function
+    private func translateStringNEW(text: String)
+    {
+        
+        let conditions = ModelDownloadConditions(allowsCellularAccess: false, allowsBackgroundDownloading: true)
+        
+        englishGermanTranslator?.downloadModelIfNeeded(with: conditions, completion: { error in
+            guard error == nil else { return }
+        })
+        
+        self.englishGermanTranslator?.translate(text, completion: { (result, error) in
+            guard error == nil else { return }
+            
+            // do stuff
+            self.transText = result!
+            print(">> DEBUG: \(self.transText)")
+        })
+        
+        
+        print("++ DEBUG:  \(self.transText)")
+        
     }
     
     //translate text
