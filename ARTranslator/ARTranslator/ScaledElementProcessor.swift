@@ -21,7 +21,7 @@ class ScaledElementProcessor {
     var textRecognizer: VisionTextRecognizer!
     
     //translated text
-    var transText = ""
+    //var transText = ""
     
     //translator
     var translator: Translator!
@@ -66,15 +66,15 @@ class ScaledElementProcessor {
                         //get the text
                         let detectedText = element.text
                         
-                        let serialQueue = DispatchQueue(label: "swiftlee.serial.queue")
-                        serialQueue.async {
-                            //translate the text
-                            self.transText = self.translateString(text: detectedText)
-                            print(self.transText, "2") //testing
-                        }
+                        //translated text
+                        let translatedDetectedText = self.translateString(text: detectedText)
                         
+                        //test to see if func that translates text is working
+                        print(translatedDetectedText, ":Translated Text in element loop")
+                        
+                        //actual UI changes here
                         //set textlayer
-                        let textLayer = self.createTextLayer(frame: frame, text: self.transText, background: backgroundColor)
+                        let textLayer = self.createTextLayer(frame: frame, text: translatedDetectedText, background: backgroundColor)
                         
                         //create scaled Element
                         let scaledElement = ScaledElement(frame: frame, shapeLayer: shapeLayer, textLayer: textLayer)
@@ -95,6 +95,8 @@ class ScaledElementProcessor {
     //translate text
     private func translateString(text: String) -> String{
         
+        var finalText = "";
+        
         let conditions = ModelDownloadConditions(
             allowsCellularAccess: false,
             allowsBackgroundDownloading: true
@@ -109,10 +111,12 @@ class ScaledElementProcessor {
             guard error == nil, let translatedText = translatedText else { return }
             
             //set global variable "transText" to our translated text
-            self.transText = translatedText
+            //self.transText = translatedText
+            
+            finalText = translatedText
         }
         
-        return transText
+        return finalText
         
     }
     
