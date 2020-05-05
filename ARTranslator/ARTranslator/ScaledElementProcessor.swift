@@ -65,6 +65,8 @@ class ScaledElementProcessor {
                         
                         //get the text
                         let detectedText = element.text
+                        //print out detected text
+                        print(element.text, ":detected text")
                         
                         //translated text
                         let translatedDetectedText = self.translateString(text: detectedText)
@@ -80,9 +82,6 @@ class ScaledElementProcessor {
                         let scaledElement = ScaledElement(frame: frame, shapeLayer: shapeLayer, textLayer: textLayer)
                         
                         scaledElements.append(scaledElement)
-                        
-                        //print out detected text
-                        print(element.text, " ")
                         
                     }
                 }
