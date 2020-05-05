@@ -18,6 +18,8 @@
 		C636127123D92479000A1F24 /* ARTranslator.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C636126F23D92479000A1F24 /* ARTranslator.xcdatamodeld */; };
 		C636127623D9247A000A1F24 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C636127423D9247A000A1F24 /* LaunchScreen.storyboard */; };
 		C636128123D9247B000A1F24 /* ARTranslatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636128023D9247B000A1F24 /* ARTranslatorTests.swift */; };
+		C6F2A6102462320A00333D67 /* UIUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F2A60F2462320A00333D67 /* UIUtilities.swift */; };
+		C6F2A6122462325800333D67 /* +UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F2A6112462325800333D67 /* +UIImage.swift */; };
 		C6F7F64F23DF8A6600630C91 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C6F7F64E23DF8A6600630C91 /* GoogleService-Info.plist */; };
 		DFC6606E84D2565371881B91 /* Pods_ARTranslatorTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EC7328C34EA7EB9AE34498C /* Pods_ARTranslatorTests.framework */; };
 /* End PBXBuildFile section */
@@ -53,6 +55,8 @@
 		C636127C23D9247B000A1F24 /* ARTranslatorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ARTranslatorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C636128023D9247B000A1F24 /* ARTranslatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARTranslatorTests.swift; sourceTree = "<group>"; };
 		C636128223D9247B000A1F24 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C6F2A60F2462320A00333D67 /* UIUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIUtilities.swift; sourceTree = "<group>"; };
+		C6F2A6112462325800333D67 /* +UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+UIImage.swift"; sourceTree = "<group>"; };
 		C6F7F64E23DF8A6600630C91 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -130,6 +134,8 @@
 				C6F7F64E23DF8A6600630C91 /* GoogleService-Info.plist */,
 				C636126F23D92479000A1F24 /* ARTranslator.xcdatamodeld */,
 				3596D3F523FC673A00D27736 /* ScaledElementProcessor.swift */,
+				C6F2A60F2462320A00333D67 /* UIUtilities.swift */,
+				C6F2A6112462325800333D67 /* +UIImage.swift */,
 			);
 			path = ARTranslator;
 			sourceTree = "<group>";
@@ -331,10 +337,12 @@
 			files = (
 				C636126B23D92479000A1F24 /* ViewController.swift in Sources */,
 				C636126723D92479000A1F24 /* AppDelegate.swift in Sources */,
+				C6F2A6122462325800333D67 /* +UIImage.swift in Sources */,
 				C622222823F4A334003DF2B0 /* ARViewController.swift in Sources */,
 				C636127123D92479000A1F24 /* ARTranslator.xcdatamodeld in Sources */,
 				20DDE5B7240B2FD300925265 /* avgColorGrabber.swift in Sources */,
 				C636126923D92479000A1F24 /* SceneDelegate.swift in Sources */,
+				C6F2A6102462320A00333D67 /* UIUtilities.swift in Sources */,
 				3596D3F623FC673A00D27736 /* ScaledElementProcessor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
