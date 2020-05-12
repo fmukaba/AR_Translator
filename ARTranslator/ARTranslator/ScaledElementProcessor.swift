@@ -37,9 +37,10 @@ class ScaledElementProcessor {
     
     func process(in imageView: UIImageView, callback: @escaping (_ text: String, _ scaledElements: [ScaledElement]) -> Void) {
         
-        guard let image = imageView.image else { return }
+        guard var image = imageView.image else { return }
+        image = image.fixOrientation()!
+    
         let visionImage = VisionImage(image: image)
-        
         //instance of avgColorGrabber class
         let colorGrabber = avgColorGrabber.init(image: image)
         
