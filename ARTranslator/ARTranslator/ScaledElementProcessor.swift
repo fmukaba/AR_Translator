@@ -120,7 +120,7 @@ class ScaledElementProcessor {
     }
     
     //create text layer 
-    private func createTextLayer(frame: CGRect, text: String, background: CGColor) -> CATextLayer{
+    public func createTextLayer(frame: CGRect, text: String, background: CGColor) -> CATextLayer{
         let textLayer = CATextLayer()
         textLayer.frame = frame
         textLayer.string = text
@@ -138,7 +138,7 @@ class ScaledElementProcessor {
         return textLayer
     }
     
-    private func createShapeLayer(frame: CGRect) -> CAShapeLayer {
+    public func createShapeLayer(frame: CGRect) -> CAShapeLayer {
         let bpath = UIBezierPath(rect: frame)
         let shapeLayer = CAShapeLayer()
         shapeLayer.path = bpath.cgPath
@@ -148,7 +148,7 @@ class ScaledElementProcessor {
         return shapeLayer
     }
     
-    private func createScaledFrame(featureFrame: CGRect, imageSize: CGSize, viewFrame: CGRect) -> CGRect {
+    public func createScaledFrame(featureFrame: CGRect, imageSize: CGSize, viewFrame: CGRect) -> CGRect {
         let viewSize = viewFrame.size
         
         let resolutionView = viewSize.width / viewSize.height

@@ -18,10 +18,15 @@ class ARViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate{
     @IBOutlet weak var sceneView: ARSCNView!
     let vision = Vision.vision()
     var textRecognizer : VisionTextRecognizer?
-    let framer = ScaledElementProcessor()
+    let processor = ScaledElementProcessor()
     
     var lastFrame : ARFrame?
     var currentImage : UIImage?
+    
+    var frameSublayer = CALayer()
+    var textLayer = CATextLayer()
+
+
     
     
     override func viewDidLoad() {
@@ -45,17 +50,19 @@ class ARViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate{
         requestTextDetection()
     }
     
- 
-    
     func requestTextDetection() {
         textRecognizer = vision.onDeviceTextRecognizer()
   
     }
     
+    private func removeFrames() {
+      guard let sublayers = frameSublayer.sublayers else { return }
+      for sublayer in sublayers {
+        sublayer.removeFromSuperlayer()
+      }
+    }
     
-    
-    
-      func highlightWord(box: VNTextObservation, translation : String) {
+    func highlightWord(box: VNTextObservation, translation : String) {
             guard let boxes = box.characterBoxes else {
                 return
             }
@@ -193,6 +200,8 @@ class ARViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate{
         // Initialize a VisionImage object with the given UIImage.
         let visionImage = VisionImage(image: image)
        
+        let colorGrabber = avgColorGrabber.init(image: image)
+        
         visionImage.metadata = imageMetadata
         textRecognizer?.process(visionImage) { result, error in
 
@@ -203,8 +212,23 @@ class ARViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate{
                 // line by line
                 for line in block.lines {
                     print(line.text, " ")
+                    
                     for element in line.elements {
+                        let frame = self.processor.createScaledFrame(featureFrame: element.frame, imageSize: image.size, viewFrame: self.sceneView.frame)
+                        
+                        let backgroundColor = colorGrabber.getAvgRectColor(rect: frame).cgColor
+                        
+                        //create the actual shapelayer
+                        let shapeLayer = self.processor.createShapeLayer(frame: frame)
+                        
+                        //get the text
+                        let detectedText = element.text
+                        
+                        //translate the text
 
+                        //set textlayer
+                        let textLayer = self.processor.createTextLayer(frame: frame, text: detectedText, background: backgroundColor)
+                        
                     }
                 }
             }
