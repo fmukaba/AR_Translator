@@ -46,7 +46,8 @@ class ARViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate{
         
         // Set the scene to the view
         //sceneView.scene = scene
-        
+        sceneView.layer.addSublayer(frameSublayer)
+        sceneView.layer.addSublayer(textLayer)
         requestTextDetection()
     }
     
@@ -193,6 +194,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate{
      }
     
     func processImage() {
+        self.removeFrames()
         guard let image = createVisionImage() else { return }
         let imageMetadata = VisionImageMetadata()
         imageMetadata.orientation = UIUtilities.visionImageOrientation(from: image.imageOrientation)
@@ -228,7 +230,10 @@ class ARViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate{
 
                         //set textlayer
                         let textLayer = self.processor.createTextLayer(frame: frame, text: detectedText, background: backgroundColor)
-                        
+                
+                        self.frameSublayer.addSublayer(shapeLayer)
+                        self.textLayer.addSublayer(textLayer)
+    
                     }
                 }
             }
