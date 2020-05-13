@@ -20,11 +20,15 @@ import Firebase
 
 class translationViewController: UIViewController, UITextViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
 
-    @IBOutlet var detectLang: UITextField!
+  //  @IBOutlet var detectLang: UITextField!
+    @IBOutlet var detectLang: UILabel!
     
     lazy var languageId = NaturalLanguage.naturalLanguage().languageIdentification()
     var langcode=""
     var str=""
+    var data="AUTO DETECT"
+    //var pickerData: [String] = [String]()
+    var yourArray = [String]()
     var languages=Set<String>()
     @IBOutlet var to: UILabel!
     @IBOutlet var from: UILabel!
@@ -50,9 +54,13 @@ class translationViewController: UIViewController, UITextViewDelegate, UIPickerV
 
   override func viewDidLoad() {
       inputPicker.dataSource = self
+      yourArray.append(data);
+    for langCode in allLanguages{
+        yourArray.append(langCode.toLanguageCode())
+    }
    ///Change here to set Default
-    inputPicker.selectRow(allLanguages.firstIndex(of: TranslateLanguage.en) ?? 0, inComponent: 0, animated: false)
-      outputPicker.selectRow(allLanguages.firstIndex(of: TranslateLanguage.es) ?? 0, inComponent: 0, animated: false)
+    inputPicker.selectRow(yourArray.firstIndex(of: "AUTO DETECT") ?? 0, inComponent: 0, animated: false)
+      outputPicker.selectRow(allLanguages.firstIndex(of: TranslateLanguage.en) ?? 0, inComponent: 0, animated: false)
     
       inputPicker.delegate = self
       outputPicker.delegate = self
@@ -63,7 +71,7 @@ class translationViewController: UIViewController, UITextViewDelegate, UIPickerV
     self.to.text="To"
     self.from.text="From"
     //      setDownloadDeleteButtonLabels()
-
+    
       NotificationCenter.default.addObserver(self, selector:#selector(remoteModelDownloadDidComplete(notification:)), name:.firebaseMLModelDownloadDidSucceed, object:nil)
       NotificationCenter.default.addObserver(self, selector:#selector(remoteModelDownloadDidComplete(notification:)), name:.firebaseMLModelDownloadDidFail, object:nil)
     }
@@ -189,7 +197,15 @@ class translationViewController: UIViewController, UITextViewDelegate, UIPickerV
 //    }
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-      let inputLanguage = allLanguages[inputPicker.selectedRow(inComponent: 0)]
+        var inputLanguage = allLanguages[inputPicker.selectedRow(inComponent: 0)]
+        if(inputLanguage.toLanguageCode()=="AUTO DETECT"){
+            for item in allLanguages{
+                if(item.toLanguageCode()==langcode){
+                    inputLanguage=item
+                    break
+                }
+            }
+        }
       let outputLanguage = allLanguages[outputPicker.selectedRow(inComponent: 0)]
       //self.setDownloadDeleteButtonLabels()
       let options = TranslatorOptions(sourceLanguage: inputLanguage, targetLanguage: outputLanguage)

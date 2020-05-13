@@ -10,7 +10,6 @@
         <!--Translation-->
         <scene sceneID="KP0-Xm-QV5">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="lMl-8q-ty1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController title="Translation" id="Lc7-v5-WI7" customClass="translationViewController" customModule="ARTranslator" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="u17-Ew-Kdd">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -46,15 +45,15 @@
                                 <rect key="frame" x="215" y="268" width="144" height="216"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             </pickerView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Identified Language(s):" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Zs-qa-ulu">
-                                <rect key="frame" x="16" y="102" width="313" height="48"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OXE-wK-z0M">
+                                <rect key="frame" x="245" y="218" width="84" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OXE-wK-z0M">
-                                <rect key="frame" x="245" y="218" width="84" height="42"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Identified Language(s):" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Zs-qa-ulu">
+                                <rect key="frame" x="16" y="86" width="313" height="48"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <nil key="textColor"/>
@@ -65,13 +64,15 @@
                         <viewLayoutGuide key="safeArea" id="Gah-7Y-Bym"/>
                     </view>
                     <connections>
+                        <outlet property="detectLang" destination="0Zs-qa-ulu" id="jWh-QG-7wY"/>
                         <outlet property="from" destination="OXE-wK-z0M" id="Boe-uI-L5y"/>
-                        <outlet property="inputPicker" destination="kcG-3B-SQo" id="xUt-U8-Mb2"/>
-                        <outlet property="inputText" destination="wfw-0Z-tzy" id="9RQ-cd-QLS"/>
+                        <outlet property="inputPicker" destination="kcG-3B-SQo" id="wDs-Xg-pp7"/>
+                        <outlet property="inputText" destination="wfw-0Z-tzy" id="dod-AA-5Wh"/>
                         <outlet property="outputPicker" destination="kCx-Hh-mxH" id="wiD-Jd-jAh"/>
                         <outlet property="to" destination="CLU-fk-ph2" id="mIM-F0-taS"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lMl-8q-ty1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1924" y="612.14392803598207"/>
         </scene>
@@ -89,6 +90,13 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RAk-bi-Yrj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jjQ-vJ-kck">
+                    <rect key="frame" x="0.0" y="0.0" width="42" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </objects>
             <point key="canvasLocation" x="2812" y="593"/>
         </scene>
