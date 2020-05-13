@@ -57,10 +57,14 @@ class ARViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate{
     }
     
     private func removeFrames() {
-      guard let sublayers = frameSublayer.sublayers else { return }
-      for sublayer in sublayers {
-        sublayer.removeFromSuperlayer()
-      }
+        guard let sublayers = frameSublayer.sublayers else { return }
+             for sublayer in sublayers {
+               sublayer.removeFromSuperlayer()
+             }
+        guard let sublayers2 = textLayer.sublayers else { return }
+             for sublayer in sublayers2 {
+                 sublayer.removeFromSuperlayer()
+             }
     }
     
     func highlightWord(box: VNTextObservation, translation : String) {
@@ -233,7 +237,6 @@ class ARViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate{
                 
                         self.frameSublayer.addSublayer(shapeLayer)
                         self.textLayer.addSublayer(textLayer)
-    
                     }
                 }
             }
