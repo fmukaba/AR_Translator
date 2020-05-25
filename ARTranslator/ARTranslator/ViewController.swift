@@ -87,7 +87,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         imageview.layer.addSublayer(frameSublayer)
         imageview.layer.addSublayer(textLayer)
         //add textview here 
-        drawFeatures(in: imageview)
+        drawFeatures(in: imageview, completion: <#() -> ()#>)
             
     }
     
@@ -138,7 +138,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     
     
     //creates the overlaying frames
-      private func drawFeatures(in imageView: UIImageView, completion: (() -> Void)? = nil) {
+      private func drawFeatures(in imageView: UIImageView, completion:() -> ()) {
         removeFrames()
         processor.process(in: imageView) { text, elements in
           elements.forEach() { element in
@@ -146,6 +146,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
             self.textLayer.addSublayer(element.textLayer)
           }
         }
+        
+        completion()
       }
     }
 

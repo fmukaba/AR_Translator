@@ -71,12 +71,10 @@ class ScaledElementProcessor {
                         //translated text
                         //need to change
                         //let translatedDetectedText = self.translateString(text: detectedText)
+                    
                         
-                        //try queue here
-                        let serialQueue = DispatchQueue(label: "com.queue.serial")
-                        serialQueue.sync {
-                            self.translateStringNEW(text: detectedText)
-                        }
+                        self.translateStringNEW(text: detectedText)
+                        
                         
                         //test to see if func that translates text is working
                         //need to change
@@ -87,14 +85,14 @@ class ScaledElementProcessor {
                         //set textlayer
                         //need to change
                         
-                        serialQueue.sync {
-                            let textLayer = self.createTextLayer(frame: frame, text: self.transText, background: backgroundColor)
+                        
+                        let textLayer = self.createTextLayer(frame: frame, text: self.transText, background: backgroundColor)
                             
-                            //create scaled Element
-                            let scaledElement = ScaledElement(frame: frame, shapeLayer: shapeLayer, textLayer: textLayer)
+                        //create scaled Element
+                        let scaledElement = ScaledElement(frame: frame, shapeLayer: shapeLayer, textLayer: textLayer)
                             
-                            scaledElements.append(scaledElement)
-                        }
+                        scaledElements.append(scaledElement)
+                        
                         
                         
                     }
