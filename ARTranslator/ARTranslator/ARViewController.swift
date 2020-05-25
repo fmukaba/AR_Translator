@@ -222,7 +222,10 @@ class ARViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate{
                     for element in line.elements {
                         let frame = self.processor.createScaledFrame(featureFrame: element.frame, imageSize: image.size, viewFrame: self.sceneView.frame)
                         
-                        let backgroundColor = colorGrabber.getAvgRectColor(rect: frame).cgColor
+                        //get the avg color of cgrect
+                        let backgroundColor = colorGrabber.getAvgRectColor(rect: element.frame).cgColor
+                        
+                        //let backgroundColor = colorGrabber.getAvgRectColor(rect: frame).cgColor
                         
                         //create the actual shapelayer
                         let shapeLayer = self.processor.createShapeLayer(frame: frame)
@@ -234,6 +237,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate{
 
                         //set textlayer
                         let textLayer = self.processor.createTextLayer(frame: frame, text: detectedText, background: backgroundColor)
+                        
                 
                         self.frameSublayer.addSublayer(shapeLayer)
                         self.textLayer.addSublayer(textLayer)

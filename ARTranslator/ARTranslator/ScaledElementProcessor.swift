@@ -17,8 +17,6 @@ struct ScaledElement {
 
 class ScaledElementProcessor {
     
-    
-    
     let vision = Vision.vision()
     var textRecognizer: VisionTextRecognizer!
     
@@ -29,6 +27,8 @@ class ScaledElementProcessor {
     var translator: Translator!
     var englishGermanTranslator : Translator?
     
+    //initialize with the translator change later so that it initalize with user
+    //picked language
     init() {
         textRecognizer = vision.onDeviceTextRecognizer()
         let options = TranslatorOptions(sourceLanguage: .en, targetLanguage: .de)
@@ -37,13 +37,12 @@ class ScaledElementProcessor {
     
     func process(in imageView: UIImageView, callback: @escaping (_ text: String, _ scaledElements: [ScaledElement]) -> Void) {
         
-        guard var image = imageView.image else { return }
-        image = image.fixOrientation()!
-    
+        guard let image = imageView.image else { return }
         let visionImage = VisionImage(image: image)
+        
         //instance of avgColorGrabber class
         let colorGrabber = avgColorGrabber.init(image: image)
-        
+    
         textRecognizer.process(visionImage) { result, error in
             guard error == nil, let result = result, !result.text.isEmpty else {
                 callback("", [])
@@ -59,29 +58,44 @@ class ScaledElementProcessor {
                         let frame = self.createScaledFrame(featureFrame: element.frame, imageSize: image.size, viewFrame: imageView.frame)
                         
                         //get the avg color of cgrect
-                        let backgroundColor = colorGrabber.getAvgRectColor(rect: frame).cgColor
+                        let backgroundColor = colorGrabber.getAvgRectColor(rect: element.frame).cgColor
                         
                         //create the actual shapelayer
                         let shapeLayer = self.createShapeLayer(frame: frame)
                         
                         //get the text
                         let detectedText = element.text
-                        
-                        //translate the text
-                        self.transText = self.translateString(text: detectedText)
-                        print(self.transText, "2")
-                        
-                        //set textlayer
-                        let textLayer = self.createTextLayer(frame: frame, text: self.transText, background: backgroundColor)
-                        
-                        //create scaled Element
-                        let scaledElement = ScaledElement(frame: frame, shapeLayer: shapeLayer, textLayer: textLayer)
-                        // let scaledElement = ScaledElement(frame: frame, textLayer: textLayer)
-                        
-                        scaledElements.append(scaledElement)
-                        
                         //print out detected text
-                        print(element.text, " ")
+                        print(element.text, ":detected text")
+                        
+                        //translated text
+                        //need to change
+                        //let translatedDetectedText = self.translateString(text: detectedText)
+                        
+                        //try queue here
+                        let serialQueue = DispatchQueue(label: "com.queue.serial")
+                        serialQueue.sync {
+                            self.translateStringNEW(text: detectedText)
+                        }
+                        
+                        //test to see if func that translates text is working
+                        //need to change
+                        //print(translatedDetectedText, ":Translated Text in element loop")
+                        print(self.transText, ":Translated Text in element loop")
+                        
+                        //actual UI changes here
+                        //set textlayer
+                        //need to change
+                        
+                        serialQueue.sync {
+                            let textLayer = self.createTextLayer(frame: frame, text: self.transText, background: backgroundColor)
+                            
+                            //create scaled Element
+                            let scaledElement = ScaledElement(frame: frame, shapeLayer: shapeLayer, textLayer: textLayer)
+                            
+                            scaledElements.append(scaledElement)
+                        }
+                        
                         
                     }
                 }
@@ -91,9 +105,33 @@ class ScaledElementProcessor {
         }
     }
     
+    //new translate text function
+    private func translateStringNEW(text: String)
+    {
+        
+        let conditions = ModelDownloadConditions(allowsCellularAccess: false, allowsBackgroundDownloading: true)
+        
+        englishGermanTranslator?.downloadModelIfNeeded(with: conditions, completion: { error in
+            guard error == nil else { return }
+        })
+        
+        self.englishGermanTranslator?.translate(text, completion: { (result, error) in
+            guard error == nil else { return }
+            
+            // do stuff
+            self.transText = result!
+            print(">> DEBUG: \(self.transText)")
+        })
+        
+        
+        print("++ DEBUG:  \(self.transText)")
+        
+    }
+    
     //translate text
     private func translateString(text: String) -> String{
-        var transText = ""
+        
+        var finalText = "";
         
         let conditions = ModelDownloadConditions(
             allowsCellularAccess: false,
@@ -102,28 +140,28 @@ class ScaledElementProcessor {
         englishGermanTranslator?.downloadModelIfNeeded(with: conditions) { error in
             guard error == nil else { return }
             
-            // Model downloaded successfully. Okay to start translating.
         }
         
         englishGermanTranslator?.translate(text) {
             translatedText, error in
             guard error == nil, let translatedText = translatedText else { return }
             
-            print(translatedText)
-            transText = translatedText
-            print(self.transText, "1")
-            // Translation succeeded.
+            //set global variable "transText" to our translated text
+            //self.transText = translatedText
+            
+            finalText = translatedText
         }
-        print(transText, "2")
-        return transText
+        
+        return finalText
         
     }
     
-    //create text layer 
+    //create text layer
     public func createTextLayer(frame: CGRect, text: String, background: CGColor) -> CATextLayer{
         let textLayer = CATextLayer()
         textLayer.frame = frame
         textLayer.string = text
+        //change font size to dynamic
         textLayer.font = UIFont(name: "TrebuchetMS-Bold", size: 50)
         textLayer.fontSize = frame.height
         
@@ -137,7 +175,9 @@ class ScaledElementProcessor {
         textLayer.contentsScale = UIScreen.main.scale
         return textLayer
     }
+
     
+    //create the CAShapeLayer
     public func createShapeLayer(frame: CGRect) -> CAShapeLayer {
         let bpath = UIBezierPath(rect: frame)
         let shapeLayer = CAShapeLayer()
@@ -148,6 +188,7 @@ class ScaledElementProcessor {
         return shapeLayer
     }
     
+    //create and return the CGRect
     public func createScaledFrame(featureFrame: CGRect, imageSize: CGSize, viewFrame: CGRect) -> CGRect {
         let viewSize = viewFrame.size
         
@@ -175,8 +216,7 @@ class ScaledElementProcessor {
         return CGRect(x: featurePointXScaled, y: featurePointYScaled, width: featureWidthScaled, height: featureHeightScaled)
     }
     
-    // MARK: - private
-    
+    //constants for the color of the cgrect border
     private enum Constants {
         static let lineWidth: CGFloat = 3.0
         static let lineColor = UIColor.green.cgColor
