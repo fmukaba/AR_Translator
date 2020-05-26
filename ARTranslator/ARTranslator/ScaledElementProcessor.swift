@@ -68,33 +68,46 @@ class ScaledElementProcessor {
                         //print out detected text
                         print(element.text, ":detected text")
                         
-                        //translated text
-                        //need to change
-                        //let translatedDetectedText = self.translateString(text: detectedText)
+                        // input the text to be trainslated
+                        TranslationManager.shared.textToTranslate = detectedText
+                        
+                        // input the languages to translate to/from
+                        TranslationManager.shared.sourceLanguageCode = "en"
+                        TranslationManager.shared.targetLanguageCode = "de"
+                        
+                        //new translate text function
+                        // send the translation request to GT and update the output field with the result
+                        TranslationManager.shared.translate(completion: { (translation) in
+                            
+                            if let translation = translation {
+                                
+                                DispatchQueue.main.async { [unowned self] in
+                                    self.transText = translation
+                                }
+                                
+                            }
+                            
+                        })
+                        
+                        let textLayer = self.createTextLayer(frame: frame, text: self.transText, background: backgroundColor)
+                        let scaledElement = ScaledElement(frame: frame, shapeLayer: shapeLayer, textLayer: textLayer)
+                        scaledElements.append(scaledElement)
+                        
                         
                         //try queue here
-                        let serialQueue = DispatchQueue(label: "com.queue.serial")
-                        serialQueue.sync {
-                            self.translateStringNEW(text: detectedText)
-                        }
-                        
-                        //test to see if func that translates text is working
-                        //need to change
-                        //print(translatedDetectedText, ":Translated Text in element loop")
-                        print(self.transText, ":Translated Text in element loop")
-                        
-                        //actual UI changes here
-                        //set textlayer
-                        //need to change
-                        
-                        serialQueue.sync {
-                            let textLayer = self.createTextLayer(frame: frame, text: self.transText, background: backgroundColor)
-                            
-                            //create scaled Element
-                            let scaledElement = ScaledElement(frame: frame, shapeLayer: shapeLayer, textLayer: textLayer)
-                            
-                            scaledElements.append(scaledElement)
-                        }
+//                        let serialQueue = DispatchQueue(label: "com.queue.serial")
+//                        serialQueue.sync {
+//                            self.translateStringNEW(text: detectedText)
+//                        }
+//
+//                        serialQueue.sync {
+//                            let textLayer = self.createTextLayer(frame: frame, text: self.transText, background: backgroundColor)
+//
+//                            //create scaled Element
+//                            let scaledElement = ScaledElement(frame: frame, shapeLayer: shapeLayer, textLayer: textLayer)
+//
+//                            scaledElements.append(scaledElement)
+//                        }
                         
                         
                     }
@@ -104,6 +117,9 @@ class ScaledElementProcessor {
             callback(result.text, scaledElements)
         }
     }
+    
+    
+    
     
     //new translate text function
     private func translateStringNEW(text: String)
@@ -127,6 +143,7 @@ class ScaledElementProcessor {
         print("++ DEBUG:  \(self.transText)")
         
     }
+    
     
     //translate text
     private func translateString(text: String) -> String{
