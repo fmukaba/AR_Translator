@@ -80,6 +80,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     @IBAction func extractBtn(_ sender: Any) {
         imageview.layer.addSublayer(frameSublayer)
         imageview.layer.addSublayer(textLayer)
+        
         //add textview here 
         drawFeatures(in: imageview)
             

@@ -13,8 +13,6 @@ import Firebase
 
 class ARViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate{
 
-   
-    
     @IBOutlet weak var sceneView: ARSCNView!
     let vision = Vision.vision()
     var textRecognizer : VisionTextRecognizer?
@@ -26,26 +24,15 @@ class ARViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate{
     var frameSublayer = CALayer()
     var textLayer = CATextLayer()
 
-
-    
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
         // Set the view's delegate
         sceneView.delegate = self
         sceneView.session.delegate = self
         
-        //sceneView.preferredFramesPerSecond = 2
-        
-        // Show statistics such as fps and timing information
-        //sceneView.showsStatistics = true
-        
-        // Create a new scene
-        //let scene = SCNScene(named: "art.scnassets/ship.scn")!
-        
-        // Set the scene to the view
-        //sceneView.scene = scene
         sceneView.layer.addSublayer(frameSublayer)
         sceneView.layer.addSublayer(textLayer)
         requestTextDetection()
@@ -198,7 +185,9 @@ class ARViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate{
      }
     
     func processImage() {
+        
         self.removeFrames()
+        
         guard let image = createVisionImage() else { return }
         let imageMetadata = VisionImageMetadata()
         imageMetadata.orientation = UIUtilities.visionImageOrientation(from: image.imageOrientation)
@@ -225,15 +214,11 @@ class ARViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate{
                         //get the avg color of cgrect
                         let backgroundColor = colorGrabber.getAvgRectColor(rect: element.frame).cgColor
                         
-                        //let backgroundColor = colorGrabber.getAvgRectColor(rect: frame).cgColor
-                        
                         //create the actual shapelayer
                         let shapeLayer = self.processor.createShapeLayer(frame: frame)
                         
                         //get the text
                         let detectedText = element.text
-                        
-                        //translate the text
 
                         //set textlayer
                         let textLayer = self.processor.createTextLayer(frame: frame, text: detectedText, background: backgroundColor)
@@ -252,13 +237,12 @@ class ARViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate{
             lastFrame = frame
         }
            
-        // grabs frame every 4 seconds
-        if (frame.timestamp - lastFrame!.timestamp >= 4) {
+        // grabs frame every 2 seconds
+        if (frame.timestamp - lastFrame!.timestamp >= 2) {
             lastFrame = frame
             if case .normal = frame.camera.trackingState {
 //                if ( UIDevice.currentDevice.orientation == UIDeviceOrientation.landscapeLeft || UIDevice.currentDevice().orientation == UIDeviceOrientation.landscapeLeft){
 //
-                
                 do {
                     processImage()
                     
