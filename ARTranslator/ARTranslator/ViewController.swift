@@ -70,6 +70,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
        }
     
     @IBAction func gallery(_ sender: Any) {
+        imageview.layer.sublayers?.removeAll()
+
         imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = .photoLibrary
