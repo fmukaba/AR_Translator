@@ -60,14 +60,14 @@ class translationViewController: UIViewController, UITextViewDelegate, UIPickerV
     }
    ///Change here to set Default
     inputPicker.selectRow(yourArray.firstIndex(of: "AUTO DETECT") ?? 0, inComponent: 0, animated: false)
-      outputPicker.selectRow(allLanguages.firstIndex(of: TranslateLanguage.en) ?? 0, inComponent: 0, animated: false)
+    outputPicker.selectRow(allLanguages.firstIndex(of: TranslateLanguage.en) ?? 0, inComponent: 0, animated: false)
     
       inputPicker.delegate = self
       outputPicker.delegate = self
       //inputTextView.delegate = self
       //inputTextView.returnKeyType = .done
       pickerView(inputPicker, didSelectRow: 0, inComponent: 0)
-     self.inputText.text="Settings"
+    self.inputText.text="Settings"
     self.to.text="To"
     self.from.text="From"
     //      setDownloadDeleteButtonLabels()
