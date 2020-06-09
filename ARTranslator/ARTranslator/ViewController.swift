@@ -22,6 +22,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     
     let processor = ScaledElementProcessor()
     
+    
+    
     //ca layer
     var frameSublayer = CALayer()
     
@@ -80,32 +82,41 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     
     //MARK: - Text detection
     @IBAction func extractBtn(_ sender: Any) {
-        imageview.layer.addSublayer(frameSublayer)
-        imageview.layer.addSublayer(textLayer)
+        // imageview.layer.addSublayer(frameSublayer)
+        // imageview.layer.addSublayer(textLayer)
         
-        //add textview here 
-        drawFeatures(in: imageview)
+        if(imageview.image != nil)
+        {
+            let builder = ImageBuilder(imageView: imageview)
+            builder.process()
+        }
+        
+        // add textview here
+        // drawFeatures(in: imageview)
         
     }
     
     func launchExtraction() {
         guard let image = imageview.image else { return } // raise an exception
-        let visionImage = VisionImage(image: image)
+        //let visionImage = VisionImage(image: image)
 
-        textRecognizer.process(visionImage) {(features, errors) in
-
-            self.textDetected = features?.text ?? ""
-            //print(self.textDetected!)
-            for block in features!.blocks {
-            // line by line
-                for line in block.lines {
-                    // word by word
-                    for element in line.elements {
-                        print(element.text, " ")
-                    }
-                }
-            }
-        }
+        
+        
+        
+//        textRecognizer.process(visionImage) {(features, errors) in
+//
+//            self.textDetected = features?.text ?? ""
+//            //print(self.textDetected!)
+//            for block in features!.blocks {
+//            // line by line
+//                for line in block.lines {
+//                    // word by word
+//                    for element in line.elements {
+//                        print(element.text, " ")
+//                    }
+//                }
+//            }
+//        }
     }
 
     @IBAction func shareBtn(_ sender: Any) {

@@ -14,55 +14,52 @@ import CoreImage
 
 class ImageElementAdder
 {
-    var image: UIImage
+    var imageView:UIImageView
+    var image:UIImage
+    
     let colorGrabber: avgColorGrabber
     
-    init(image:UIImage)
+    init(imageView:UIImageView)
     {
-        self.image = image
-        self.colorGrabber = avgColorGrabber(image: image)
+        self.imageView = imageView
+        self.image = self.imageView.image!
+        self.colorGrabber = avgColorGrabber(image: self.image)
     }
     
     func addElement(rect:CGRect, text:String) -> Void
     {
-        drawRectangleOnImage(rect: rect) // add CGRect with avgColorGrabber background color to image
-
-        textToImage(drawText: text, inRect: rect) // add text
+        drawToImage(rect: rect, text: text)
         
+        //drawRectangleOnImage(rect: rect) // add CGRect with avgColorGrabber background color to image
+        //textToImage(drawText: text, inRect: rect) // add text
+        
+        self.imageView.image = self.image
         // TODO combine above later
     }
-    
-    func getImage() -> UIImage
-    {
-        return self.image
-    }
-    
     private func drawRectangleOnImage(rect: CGRect) -> Void
     {
         let scale: CGFloat = 0
         UIGraphicsBeginImageContextWithOptions(self.image.size, false, scale)
         
         self.image.draw(at: CGPoint.zero) // leave the draw(at) point at 0,0? verify with testing
-        
         // let rectangle = CGRect(x: 0, y: (imageSize.height/2) - 30, width: imageSize.width, height: 60)
-        
         
         self.colorGrabber.getAvgRectColor(rect: rect).setFill()
         UIRectFill(rect)
         
-        self.image = UIGraphicsGetImageFromCurrentImageContext()!
-        UIGraphicsEndImageContext()
+        // DONE
         
+        self.image = UIGraphicsGetImageFromCurrentImageContext()!
+        print("++ DEBUG overwritten image with rect")
+        UIGraphicsEndImageContext()
     }
     
-    func textToImage(drawText text: String, inRect rect: CGRect) -> Void
+    private func textToImage(drawText text: String, inRect rect: CGRect) -> Void
     {
-        let textFont = UIFont(name: "TrebuchetMS-Bold", size: 50)! // set dynamically ?
-        
         let scale: CGFloat = 0
         UIGraphicsBeginImageContextWithOptions(self.image.size, false, scale)
         
-        
+        let textFont = UIFont(name: "TrebuchetMS-Bold", size: 50)! // set dynamically ?
         let textColor = UIColor.black
         // let backgroundColor = self.colorGrabber.getAvgRectColor(rect: rect) // DO THIS LATER
         
@@ -77,9 +74,50 @@ class ImageElementAdder
         
         text.draw(in: rect, withAttributes: textFontAttributes)
         
+        // DONE
+        
         self.image = UIGraphicsGetImageFromCurrentImageContext()!
+        print("++ DEBUG overwritten image with text\n")
         UIGraphicsEndImageContext()
     }
+    
+    private func drawToImage(rect:CGRect, text:String)
+    {
+        print("++ DEBUG addElement text: \(text)")
+        
+        let scale: CGFloat = 0
+        UIGraphicsBeginImageContextWithOptions(self.image.size, false, scale)
+        
+        let backgroundColor = self.colorGrabber.getAvgRectColor(rect: rect)
+        
+        let tempColor = backgroundColor.cgColor
+        
+        var textColor = UIColor.black
+        if(max(tempColor.components![0], tempColor.components![1], tempColor.components![2]) < 0.65)
+        {
+            textColor = UIColor.white
+        }
+        
+        let textFont = UIFont(name: "TrebuchetMS-Bold", size: rect.height * 0.9)! // set dynamically ?
+        
+        let textFontAttributes = [
+            NSAttributedString.Key.font: textFont,
+            NSAttributedString.Key.foregroundColor: textColor,
+            ] as [NSAttributedString.Key : Any]
+        
+        self.image.draw(at: CGPoint.zero) // leave the draw(at) point at 0,0? verify with testing
+        
+        backgroundColor.setFill()
+        UIRectFill(rect)
+        
+        text.draw(in: rect, withAttributes: textFontAttributes)
+        
+        self.image = UIGraphicsGetImageFromCurrentImageContext()!
+        print("++ DEBUG image overwritten\n")
+        UIGraphicsEndImageContext()
+        
+    }
+    
     
 }
 

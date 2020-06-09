@@ -82,16 +82,16 @@ class ScaledElementProcessor
                     
                     
                     
-//                    DispatchQueue.global().async {
-//                        self.translateString_MK3(text: detectedText)
-//                    }
+                    //                    DispatchQueue.global().async {
+                    //                        self.translateString_MK3(text: detectedText)
+                    //                    }
                     
                     
                     
-
+                    
                     DispatchQueue.global().async {
-                    self.translateString_MK3(text: detectedText)
-                    // self.translateStringNEW(text: detectedText)
+                        self.translateString_MK3(text: detectedText)
+                        // self.translateStringNEW(text: detectedText)
                     }
                     
                     semaphore.wait()
@@ -128,7 +128,7 @@ class ScaledElementProcessor
     {
         let conditions = ModelDownloadConditions(allowsCellularAccess: false, allowsBackgroundDownloading: true)
         
-         englishGermanTranslator?.downloadModelIfNeeded(with: conditions, completion: { error in
+        englishGermanTranslator?.downloadModelIfNeeded(with: conditions, completion: { error in
             guard error == nil else { return }
         })
         
@@ -157,6 +157,20 @@ class ScaledElementProcessor
         TranslationManager.shared.sourceLanguageCode = "en"
         TranslationManager.shared.targetLanguageCode = "de"
         
+        TranslationManager.shared.fetchSupportedLanguages(completion: { (success) in
+            if (success)
+            {
+                // do thing
+            }
+            else
+            {
+                // do thing
+            }
+            
+        })
+        
+        
+        
         // send the translation request to GT and update the output field with the result
         TranslationManager.shared.translate(completion: { (translation) in
             
@@ -169,7 +183,7 @@ class ScaledElementProcessor
                 }
             }
         })
-
+        
     }
     
     //translate text
@@ -201,7 +215,7 @@ class ScaledElementProcessor
     }
     
     //create text layer
-     func createTextLayer(frame: CGRect, text: String, background: CGColor) -> CATextLayer{
+    func createTextLayer(frame: CGRect, text: String, background: CGColor) -> CATextLayer{
         let textLayer = CATextLayer()
         textLayer.frame = frame
         textLayer.string = text
@@ -222,7 +236,7 @@ class ScaledElementProcessor
     
     
     //create the CAShapeLayer
-     func createShapeLayer(frame: CGRect) -> CAShapeLayer {
+    func createShapeLayer(frame: CGRect) -> CAShapeLayer {
         let bpath = UIBezierPath(rect: frame)
         let shapeLayer = CAShapeLayer()
         shapeLayer.path = bpath.cgPath
@@ -235,7 +249,7 @@ class ScaledElementProcessor
     
     
     //create and return the CGRect
-     func createScaledFrame(featureFrame: CGRect, imageSize: CGSize, viewFrame: CGRect) -> CGRect {
+    func createScaledFrame(featureFrame: CGRect, imageSize: CGSize, viewFrame: CGRect) -> CGRect {
         let viewSize = viewFrame.size
         
         let resolutionView = viewSize.width / viewSize.height

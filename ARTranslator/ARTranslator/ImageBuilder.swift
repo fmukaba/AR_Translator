@@ -14,26 +14,29 @@ var ImageBuilderSemaphore = DispatchSemaphore(value: 0)
 class ImageBuilder
 {
     let vision = Vision.vision()
+    
+    var imageView:UIImageView
+    var image:UIImage
     var textRecognizer: VisionTextRecognizer!
     
     //translated text
     var transText = ""
     
-    init()
+    init(imageView: UIImageView)
     {
+        self.imageView = imageView
+        self.image = imageView.image!
+        
         textRecognizer = vision.onDeviceTextRecognizer()
     }
     
     
-    func process(image: UIImage) -> UIImage
+    func process()
     {
-        let elementAdder = ImageElementAdder.init(image: image)
+        let elementAdder = ImageElementAdder.init(imageView: imageView)
         
         let visionImage = VisionImage(image: image)
-        
-        //instance of avgColorGrabber class
-        let colorGrabber = avgColorGrabber.init(image: image)
-        
+                
         textRecognizer.process(visionImage) { result, error in
             guard error == nil, let result = result, !result.text.isEmpty else {
                 return
@@ -77,7 +80,7 @@ class ImageBuilder
                 }
             }
         }
-        return elementAdder.getImage()
+        print("==DEBUG IMAGE RETURNED")
     }
     
     
@@ -100,7 +103,7 @@ class ImageBuilder
                 DispatchQueue.global().async { [unowned self] in
                     self.transText = translation
                     semaphore.signal()
-                    print("DEBUG TRANSLATION: \(translation)" )
+                    //print("DEBUG TRANSLATION: \(translation)" )
                 }
             }
         })
