@@ -26,7 +26,9 @@ class ImageBuilder
     
     
     func process(image: UIImage) -> UIImage
-    {        
+    {
+        let elementAdder = ImageElementAdder.init(image: image)
+        
         let visionImage = VisionImage(image: image)
         
         //instance of avgColorGrabber class
@@ -37,7 +39,6 @@ class ImageBuilder
                 return
             }
             
-            var scaledElements: [ScaledElement] = []
             for block in result.blocks
             {
                 for line in block.lines
@@ -46,8 +47,8 @@ class ImageBuilder
                     // creates CGrect for use in CALayer [REMOVED FOR NEW IMAGE BUILDER]
                     // let frame = self.createScaledFrame(featureFrame: line.frame, imageSize: image.size, viewFrame: imageView.frame)
                     
-                    // get the avg color of cgrect
-                    let backgroundColor = colorGrabber.getAvgRectColor(rect: line.frame).cgColor
+                    // UNNEEDED, USED IN ImageElementAdder.swift
+                    // let backgroundColor = colorGrabber.getAvgRectColor(rect: line.frame).cgColor
                     
                     //create the actual shapelayer
                     //let shapeLayer = self.createShapeLayer(frame: frame)
@@ -71,10 +72,12 @@ class ImageBuilder
                     // let scaledElement = ScaledElement(frame: frame, shapeLayer: shapeLayer, textLayer: textLayer)
                     // scaledElements.append(scaledElement)
                     
+                    elementAdder.addElement(rect: line.frame, text: self.transText)
+                    
                 }
             }
         }
-        return UIImage.init()
+        return elementAdder.getImage()
     }
     
     
@@ -84,11 +87,12 @@ class ImageBuilder
         TranslationManager.shared.textToTranslate = text
         
         // input the languages to translate to/from
-        TranslationManager.shared.sourceLanguageCode = "en"
-        TranslationManager.shared.targetLanguageCode = "de"
+        TranslationManager.shared.sourceLanguageCode = "en" // DEPRECIATED REMOVE WHEN MULUH'S CODE WORKS
+        TranslationManager.shared.targetLanguageCode = "de" // DEPRECIATED REMOVE WHEN MULUH'S CODE WORKS
         
         
         // HOLY CODE - DO NOT TOUCH
+        
         // send the translation request to GT and update the output field with the result
         TranslationManager.shared.translate(completion: { (translation) in
             
@@ -100,6 +104,7 @@ class ImageBuilder
                 }
             }
         })
+        
         // HOLY CODE - DO NOT TOUCH
         
     }

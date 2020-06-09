@@ -46,6 +46,7 @@ class ImageElementAdder
         
         // let rectangle = CGRect(x: 0, y: (imageSize.height/2) - 30, width: imageSize.width, height: 60)
         
+        
         self.colorGrabber.getAvgRectColor(rect: rect).setFill()
         UIRectFill(rect)
         
@@ -54,13 +55,16 @@ class ImageElementAdder
         
     }
     
-    func textToImage(drawText text: String, inRect rect: CGRect ) -> Void
+    func textToImage(drawText text: String, inRect rect: CGRect) -> Void
     {
-        let textColor = UIColor.black
         let textFont = UIFont(name: "TrebuchetMS-Bold", size: 50)! // set dynamically ?
         
         let scale: CGFloat = 0
         UIGraphicsBeginImageContextWithOptions(self.image.size, false, scale)
+        
+        
+        let textColor = UIColor.black
+        // let backgroundColor = self.colorGrabber.getAvgRectColor(rect: rect) // DO THIS LATER
         
         let textFontAttributes = [
             NSAttributedString.Key.font: textFont,
