@@ -70,6 +70,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
        }
     
     @IBAction func gallery(_ sender: Any) {
+        imageview.layer.sublayers?.removeAll()
+
         imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = .photoLibrary
@@ -80,6 +82,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     @IBAction func extractBtn(_ sender: Any) {
         imageview.layer.addSublayer(frameSublayer)
         imageview.layer.addSublayer(textLayer)
+        
         //add textview here 
         drawFeatures(in: imageview)
             
@@ -142,9 +145,3 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         }
       }
     }
-
-
-
-    
-    
-
