@@ -19,6 +19,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     let vision = Vision.vision()
     var textRecognizer: VisionTextRecognizer!
     var textDetected: String!
+    var textTranslated: String!
     
     let processor = ScaledElementProcessor()
     

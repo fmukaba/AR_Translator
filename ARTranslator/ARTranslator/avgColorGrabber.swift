@@ -71,7 +71,6 @@ class avgColorGrabber: NSObject
     func getAvgRectColor(rect: CGRect) -> UIColor
     {
        
-        
         let x0 = UInt32(rect.minX)
         let y0 = UInt32(rect.minY)
         let x1 = UInt32(rect.maxX)
