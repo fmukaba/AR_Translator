@@ -15,20 +15,21 @@ import CoreImage
 class ImageElementAdder
 {
     var image: UIImage
-    var imageSize: CGSize
     let colorGrabber: avgColorGrabber
     
     init(image:UIImage)
     {
         self.image = image
-        self.imageSize = self.image.size
         self.colorGrabber = avgColorGrabber(image: image)
     }
     
     func addElement(rect:CGRect, text:String) -> Void
     {
-        // add CGRect with avgColorGrabber background color to image
-        // add text
+        drawRectangleOnImage(rect: rect) // add CGRect with avgColorGrabber background color to image
+
+        textToImage(drawText: text, inRect: rect) // add text
+        
+        // TODO combine above later
     }
     
     func getImage() -> UIImage
@@ -39,7 +40,7 @@ class ImageElementAdder
     private func drawRectangleOnImage(rect: CGRect) -> Void
     {
         let scale: CGFloat = 0
-        UIGraphicsBeginImageContextWithOptions(self.imageSize, false, scale)
+        UIGraphicsBeginImageContextWithOptions(self.image.size, false, scale)
         
         self.image.draw(at: CGPoint.zero) // leave the draw(at) point at 0,0? verify with testing
         
@@ -50,24 +51,26 @@ class ImageElementAdder
         
         self.image = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
+        
     }
     
-    func textToImage(drawText text: String, inImage image: UIImage, atPoint point: CGPoint) -> Void
+    func textToImage(drawText text: String, inRect rect: CGRect ) -> Void
     {
         let textColor = UIColor.black
-        let textFont = UIFont(name: "Helvetica Bold", size: 12)! // set dynamically ?
+        let textFont = UIFont(name: "TrebuchetMS-Bold", size: 50)! // set dynamically ?
         
         let scale: CGFloat = 0
-        UIGraphicsBeginImageContextWithOptions(self.imageSize, false, scale)
+        UIGraphicsBeginImageContextWithOptions(self.image.size, false, scale)
         
         let textFontAttributes = [
             NSAttributedString.Key.font: textFont,
             NSAttributedString.Key.foregroundColor: textColor,
             ] as [NSAttributedString.Key : Any]
         
-        image.draw(in: CGRect(origin: CGPoint.zero, size: image.size))
+        self.image.draw(in: CGRect(origin: CGPoint.zero, size: self.image.size))
         
-        let rect = CGRect(origin: point, size: image.size)
+        // let rectOLD = CGRect(origin: point, size: self.image.size)
+        
         text.draw(in: rect, withAttributes: textFontAttributes)
         
         self.image = UIGraphicsGetImageFromCurrentImageContext()!
