@@ -7,3 +7,102 @@
 //
 
 import Foundation
+import Firebase
+
+var ImageBuilderSemaphore = DispatchSemaphore(value: 0)
+
+class ImageBuilder
+{
+    let vision = Vision.vision()
+    var textRecognizer: VisionTextRecognizer!
+    
+    //translated text
+    var transText = ""
+    
+    init()
+    {
+        textRecognizer = vision.onDeviceTextRecognizer()
+    }
+    
+    
+    func process(image: UIImage) -> UIImage
+    {        
+        let visionImage = VisionImage(image: image)
+        
+        //instance of avgColorGrabber class
+        let colorGrabber = avgColorGrabber.init(image: image)
+        
+        textRecognizer.process(visionImage) { result, error in
+            guard error == nil, let result = result, !result.text.isEmpty else {
+                return
+            }
+            
+            var scaledElements: [ScaledElement] = []
+            for block in result.blocks
+            {
+                for line in block.lines
+                {
+                    
+                    // creates CGrect for use in CALayer [REMOVED FOR NEW IMAGE BUILDER]
+                    // let frame = self.createScaledFrame(featureFrame: line.frame, imageSize: image.size, viewFrame: imageView.frame)
+                    
+                    // get the avg color of cgrect
+                    let backgroundColor = colorGrabber.getAvgRectColor(rect: line.frame).cgColor
+                    
+                    //create the actual shapelayer
+                    //let shapeLayer = self.createShapeLayer(frame: frame)
+                    
+                    let detectedText = line.text
+                    print(">> DEBUG DETECTED TEXT: \(detectedText)")
+                    
+                    // HOLY CODE - DO NOT TOUCH
+                    DispatchQueue.global().async {
+                        self.translateString_MK3(text: detectedText)
+                        // self.translateStringNEW(text: detectedText)
+                    }
+                    semaphore.wait()
+                    // HOLY CODE - DO NOT TOUCH
+                    
+                    print(">> DEBUG TRANSLATED TEXT: \(self.transText)")
+                    
+                    // ADD RECTANGLE AND TEXT TO IMAGE
+                    
+                    // let textLayer = self.createTextLayer(frame: frame, text: self.transText, background: backgroundColor)
+                    // let scaledElement = ScaledElement(frame: frame, shapeLayer: shapeLayer, textLayer: textLayer)
+                    // scaledElements.append(scaledElement)
+                    
+                }
+            }
+        }
+        return newImage
+    }
+    
+    
+    private func translateString_MK3(text:String)
+    {
+        // input the text to be trainslated
+        TranslationManager.shared.textToTranslate = text
+        
+        // input the languages to translate to/from
+        TranslationManager.shared.sourceLanguageCode = "en"
+        TranslationManager.shared.targetLanguageCode = "de"
+        
+        
+        // HOLY CODE - DO NOT TOUCH
+        // send the translation request to GT and update the output field with the result
+        TranslationManager.shared.translate(completion: { (translation) in
+            
+            if let translation = translation {
+                DispatchQueue.global().async { [unowned self] in
+                    self.transText = translation
+                    semaphore.signal()
+                    print("DEBUG TRANSLATION: \(translation)" )
+                }
+            }
+        })
+        // HOLY CODE - DO NOT TOUCH
+        
+    }
+    
+    
+}

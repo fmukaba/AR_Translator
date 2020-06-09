@@ -85,7 +85,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         
         //add textview here 
         drawFeatures(in: imageview)
-            
+        
     }
     
     func launchExtraction() {
