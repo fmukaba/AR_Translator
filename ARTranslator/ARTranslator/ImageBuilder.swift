@@ -74,7 +74,7 @@ class ImageBuilder
                 }
             }
         }
-        return newImage
+        return UIImage.init()
     }
     
     
