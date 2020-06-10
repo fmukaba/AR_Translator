@@ -7,8 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		20491D6B248EC4A700D61A29 /* ImageBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20491D6A248EC4A700D61A29 /* ImageBuilder.swift */; };
+		20491D6D248ECEF700D61A29 /* ImageElementAdder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20491D6C248ECEF700D61A29 /* ImageElementAdder.swift */; };
 		20DDE5B7240B2FD300925265 /* avgColorGrabber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DDE5B6240B2FD200925265 /* avgColorGrabber.swift */; };
 		3596D3F623FC673A00D27736 /* ScaledElementProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3596D3F523FC673A00D27736 /* ScaledElementProcessor.swift */; };
+		35D4F564247D9DB100E2A7C5 /* TranslationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D4F563247D9DB100E2A7C5 /* TranslationManager.swift */; };
+		35D4F566247D9DCA00E2A7C5 /* TranslationAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D4F565247D9DCA00E2A7C5 /* TranslationAPI.swift */; };
 		B2E25C0EE5BFA25E0DF040D8 /* Pods_ARTranslator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E0FB5AF27CE1AB6643E984C /* Pods_ARTranslator.framework */; };
 		C622222823F4A334003DF2B0 /* ARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C622222723F4A334003DF2B0 /* ARViewController.swift */; };
 		C636126723D92479000A1F24 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636126623D92479000A1F24 /* AppDelegate.swift */; };
@@ -18,6 +22,7 @@
 		C636127123D92479000A1F24 /* ARTranslator.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C636126F23D92479000A1F24 /* ARTranslator.xcdatamodeld */; };
 		C636127623D9247A000A1F24 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C636127423D9247A000A1F24 /* LaunchScreen.storyboard */; };
 		C636128123D9247B000A1F24 /* ARTranslatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636128023D9247B000A1F24 /* ARTranslatorTests.swift */; };
+		C6845BA8249156F500F85DCA /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6845BA7249156F500F85DCA /* Settings.swift */; };
 		C6F2A6102462320A00333D67 /* UIUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F2A60F2462320A00333D67 /* UIUtilities.swift */; };
 		C6F2A6122462325800333D67 /* +UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F2A6112462325800333D67 /* +UIImage.swift */; };
 		C6F7F64F23DF8A6600630C91 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C6F7F64E23DF8A6600630C91 /* GoogleService-Info.plist */; };
@@ -36,9 +41,13 @@
 
 /* Begin PBXFileReference section */
 		16F403599D6C0DC8D427B7AA /* Pods-ARTranslator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARTranslator.debug.xcconfig"; path = "Target Support Files/Pods-ARTranslator/Pods-ARTranslator.debug.xcconfig"; sourceTree = "<group>"; };
+		20491D6A248EC4A700D61A29 /* ImageBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageBuilder.swift; sourceTree = "<group>"; };
+		20491D6C248ECEF700D61A29 /* ImageElementAdder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageElementAdder.swift; sourceTree = "<group>"; };
 		20DDE5B6240B2FD200925265 /* avgColorGrabber.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; fileEncoding = 4; path = avgColorGrabber.swift; sourceTree = "<group>"; };
 		28CBB93130CCAEA7420C804D /* Pods-ARTranslatorTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARTranslatorTests.release.xcconfig"; path = "Target Support Files/Pods-ARTranslatorTests/Pods-ARTranslatorTests.release.xcconfig"; sourceTree = "<group>"; };
 		3596D3F523FC673A00D27736 /* ScaledElementProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaledElementProcessor.swift; sourceTree = "<group>"; };
+		35D4F563247D9DB100E2A7C5 /* TranslationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TranslationManager.swift; sourceTree = "<group>"; };
+		35D4F565247D9DCA00E2A7C5 /* TranslationAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TranslationAPI.swift; sourceTree = "<group>"; };
 		6EC7328C34EA7EB9AE34498C /* Pods_ARTranslatorTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ARTranslatorTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E0FB5AF27CE1AB6643E984C /* Pods_ARTranslator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ARTranslator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DDED1FFAACD25A3546F390A /* Pods-ARTranslator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARTranslator.release.xcconfig"; path = "Target Support Files/Pods-ARTranslator/Pods-ARTranslator.release.xcconfig"; sourceTree = "<group>"; };
@@ -55,6 +64,7 @@
 		C636127C23D9247B000A1F24 /* ARTranslatorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ARTranslatorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C636128023D9247B000A1F24 /* ARTranslatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARTranslatorTests.swift; sourceTree = "<group>"; };
 		C636128223D9247B000A1F24 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C6845BA7249156F500F85DCA /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		C6F2A60F2462320A00333D67 /* UIUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIUtilities.swift; sourceTree = "<group>"; };
 		C6F2A6112462325800333D67 /* +UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+UIImage.swift"; sourceTree = "<group>"; };
 		C6F7F64E23DF8A6600630C91 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -123,8 +133,11 @@
 		C636126523D92479000A1F24 /* ARTranslator */ = {
 			isa = PBXGroup;
 			children = (
+				35D4F565247D9DCA00E2A7C5 /* TranslationAPI.swift */,
+				35D4F563247D9DB100E2A7C5 /* TranslationManager.swift */,
 				C636126623D92479000A1F24 /* AppDelegate.swift */,
 				C636126823D92479000A1F24 /* SceneDelegate.swift */,
+				C6845BA7249156F500F85DCA /* Settings.swift */,
 				C636126A23D92479000A1F24 /* ViewController.swift */,
 				20DDE5B6240B2FD200925265 /* avgColorGrabber.swift */,
 				C636126C23D92479000A1F24 /* Main.storyboard */,
@@ -134,6 +147,8 @@
 				C6F7F64E23DF8A6600630C91 /* GoogleService-Info.plist */,
 				C636126F23D92479000A1F24 /* ARTranslator.xcdatamodeld */,
 				3596D3F523FC673A00D27736 /* ScaledElementProcessor.swift */,
+				20491D6A248EC4A700D61A29 /* ImageBuilder.swift */,
+				20491D6C248ECEF700D61A29 /* ImageElementAdder.swift */,
 				C6F2A60F2462320A00333D67 /* UIUtilities.swift */,
 				C6F2A6112462325800333D67 /* +UIImage.swift */,
 			);
@@ -337,11 +352,16 @@
 			files = (
 				C636126B23D92479000A1F24 /* ViewController.swift in Sources */,
 				C636126723D92479000A1F24 /* AppDelegate.swift in Sources */,
+				20491D6D248ECEF700D61A29 /* ImageElementAdder.swift in Sources */,
 				C6F2A6122462325800333D67 /* +UIImage.swift in Sources */,
 				C622222823F4A334003DF2B0 /* ARViewController.swift in Sources */,
+				35D4F566247D9DCA00E2A7C5 /* TranslationAPI.swift in Sources */,
 				C636127123D92479000A1F24 /* ARTranslator.xcdatamodeld in Sources */,
+				C6845BA8249156F500F85DCA /* Settings.swift in Sources */,
 				20DDE5B7240B2FD300925265 /* avgColorGrabber.swift in Sources */,
+				20491D6B248EC4A700D61A29 /* ImageBuilder.swift in Sources */,
 				C636126923D92479000A1F24 /* SceneDelegate.swift in Sources */,
+				35D4F564247D9DB100E2A7C5 /* TranslationManager.swift in Sources */,
 				C6F2A6102462320A00333D67 /* UIUtilities.swift in Sources */,
 				3596D3F623FC673A00D27736 /* ScaledElementProcessor.swift in Sources */,
 			);
@@ -503,17 +523,16 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 16F403599D6C0DC8D427B7AA /* Pods-ARTranslator.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 57ZAM578YW;
+				DEVELOPMENT_TEAM = 83DXAQWLN9;
 				INFOPLIST_FILE = ARTranslator/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.evanj;
+				PRODUCT_BUNDLE_IDENTIFIER = com.evanjohnson;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -525,17 +544,16 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8DDED1FFAACD25A3546F390A /* Pods-ARTranslator.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 57ZAM578YW;
+				DEVELOPMENT_TEAM = 83DXAQWLN9;
 				INFOPLIST_FILE = ARTranslator/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.evanj;
+				PRODUCT_BUNDLE_IDENTIFIER = com.evanjohnson;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;

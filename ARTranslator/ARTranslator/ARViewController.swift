@@ -13,49 +13,48 @@ import Firebase
 
 class ARViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate{
 
-   
-    
     @IBOutlet weak var sceneView: ARSCNView!
     let vision = Vision.vision()
     var textRecognizer : VisionTextRecognizer?
-    let framer = ScaledElementProcessor()
+    let processor = ScaledElementProcessor()
     
     var lastFrame : ARFrame?
     var currentImage : UIImage?
     
+    var frameSublayer = CALayer()
+    var textLayer = CATextLayer()
+
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
         // Set the view's delegate
         sceneView.delegate = self
         sceneView.session.delegate = self
         
-        //sceneView.preferredFramesPerSecond = 2
-        
-        // Show statistics such as fps and timing information
-        //sceneView.showsStatistics = true
-        
-        // Create a new scene
-        //let scene = SCNScene(named: "art.scnassets/ship.scn")!
-        
-        // Set the scene to the view
-        //sceneView.scene = scene
-        
+        sceneView.layer.addSublayer(frameSublayer)
+        sceneView.layer.addSublayer(textLayer)
         requestTextDetection()
     }
-    
- 
     
     func requestTextDetection() {
         textRecognizer = vision.onDeviceTextRecognizer()
   
     }
     
+    private func removeFrames() {
+        guard let sublayers = frameSublayer.sublayers else { return }
+             for sublayer in sublayers {
+               sublayer.removeFromSuperlayer()
+             }
+        guard let sublayers2 = textLayer.sublayers else { return }
+             for sublayer in sublayers2 {
+                 sublayer.removeFromSuperlayer()
+             }
+    }
     
-    
-    
-      func highlightWord(box: VNTextObservation, translation : String) {
+    func highlightWord(box: VNTextObservation, translation : String) {
             guard let boxes = box.characterBoxes else {
                 return
             }
@@ -133,7 +132,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate{
         let node = SCNNode()
      
         return node
-    }
+   }
 */
     
     func session(_ session: ARSession, didFailWithError error: Error) {
@@ -186,6 +185,9 @@ class ARViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate{
      }
     
     func processImage() {
+        
+        self.removeFrames()
+        
         guard let image = createVisionImage() else { return }
         let imageMetadata = VisionImageMetadata()
         imageMetadata.orientation = UIUtilities.visionImageOrientation(from: image.imageOrientation)
@@ -193,6 +195,8 @@ class ARViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate{
         // Initialize a VisionImage object with the given UIImage.
         let visionImage = VisionImage(image: image)
        
+        let colorGrabber = avgColorGrabber.init(image: image)
+        
         visionImage.metadata = imageMetadata
         textRecognizer?.process(visionImage) { result, error in
 
@@ -203,8 +207,25 @@ class ARViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate{
                 // line by line
                 for line in block.lines {
                     print(line.text, " ")
+                    
                     for element in line.elements {
+                        let frame = self.processor.createScaledFrame(featureFrame: element.frame, imageSize: image.size, viewFrame: self.sceneView.frame)
+                        
+                        //get the avg color of cgrect
+                        let backgroundColor = colorGrabber.getAvgRectColor(rect: element.frame).cgColor
+                        
+                        //create the actual shapelayer
+                        let shapeLayer = self.processor.createShapeLayer(frame: frame)
+                        
+                        //get the text
+                        let detectedText = element.text
 
+                        //set textlayer
+                        let textLayer = self.processor.createTextLayer(frame: frame, text: detectedText, background: backgroundColor)
+                        
+                
+                        self.frameSublayer.addSublayer(shapeLayer)
+                        self.textLayer.addSublayer(textLayer)
                     }
                 }
             }
@@ -216,13 +237,12 @@ class ARViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate{
             lastFrame = frame
         }
            
-        // grabs frame every 4 seconds
-        if (frame.timestamp - lastFrame!.timestamp >= 4) {
+        // grabs frame every 2 seconds
+        if (frame.timestamp - lastFrame!.timestamp >= 2) {
             lastFrame = frame
             if case .normal = frame.camera.trackingState {
 //                if ( UIDevice.currentDevice.orientation == UIDeviceOrientation.landscapeLeft || UIDevice.currentDevice().orientation == UIDeviceOrientation.landscapeLeft){
 //
-                
                 do {
                     processImage()
                     

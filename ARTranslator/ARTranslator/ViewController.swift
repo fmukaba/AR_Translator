@@ -19,8 +19,11 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     let vision = Vision.vision()
     var textRecognizer: VisionTextRecognizer!
     var textDetected: String!
+    var textTranslated: String!
     
     let processor = ScaledElementProcessor()
+    
+    
     
     //ca layer
     var frameSublayer = CALayer()
@@ -70,6 +73,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
        }
     
     @IBAction func gallery(_ sender: Any) {
+        imageview.layer.sublayers?.removeAll()
+
         imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = .photoLibrary
@@ -78,31 +83,41 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     
     //MARK: - Text detection
     @IBAction func extractBtn(_ sender: Any) {
-        imageview.layer.addSublayer(frameSublayer)
-        imageview.layer.addSublayer(textLayer)
-        //add textview here 
-        drawFeatures(in: imageview)
-            
+        // imageview.layer.addSublayer(frameSublayer)
+        // imageview.layer.addSublayer(textLayer)
+        
+        if(imageview.image != nil)
+        {
+            let builder = ImageBuilder(imageView: imageview)
+            builder.process()
+        }
+        
+        // add textview here
+        // drawFeatures(in: imageview)
+        
     }
     
     func launchExtraction() {
         guard let image = imageview.image else { return } // raise an exception
-        let visionImage = VisionImage(image: image)
+        //let visionImage = VisionImage(image: image)
 
-        textRecognizer.process(visionImage) {(features, errors) in
-
-            self.textDetected = features?.text ?? ""
-            //print(self.textDetected!)
-            for block in features!.blocks {
-            // line by line
-                for line in block.lines {
-                    // word by word
-                    for element in line.elements {
-                        print(element.text, " ")
-                    }
-                }
-            }
-        }
+        
+        
+        
+//        textRecognizer.process(visionImage) {(features, errors) in
+//
+//            self.textDetected = features?.text ?? ""
+//            //print(self.textDetected!)
+//            for block in features!.blocks {
+//            // line by line
+//                for line in block.lines {
+//                    // word by word
+//                    for element in line.elements {
+//                        print(element.text, " ")
+//                    }
+//                }
+//            }
+//        }
     }
 
     @IBAction func shareBtn(_ sender: Any) {
@@ -142,9 +157,3 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         }
       }
     }
-
-
-
-    
-    
-
