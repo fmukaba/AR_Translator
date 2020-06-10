@@ -20,7 +20,7 @@ class TranslationManager: NSObject {
     
     static let shared = TranslationManager()
     
-    private let apiKey = "AIzaSyBjm5m80-tPaiYlb8np5rE8zzh4ApxPptI"
+    private let apiKey = "AIzaSyDBBtrAMnKFhANDvOs3zBwo6A2aFr5VG9k"
     
     var sourceLanguageCode: String?
     
@@ -35,6 +35,7 @@ class TranslationManager: NSObject {
     
     override init() {
         super.init()
+        
     }
     
     
@@ -141,13 +142,10 @@ class TranslationManager: NSObject {
                     
                     self.supportedLanguages.append(TranslationLanguage(code: languageCode, name: languageName))
                 }
-                
-                completion(true)
-                
+                completion(true)                
             } else {
                 completion(false)
             }
-            
         }
     }
     
@@ -164,7 +162,6 @@ class TranslationManager: NSObject {
         if let sourceLanguage = sourceLanguageCode {
             urlParams["source"] = sourceLanguage
         }
-        
         
         makeRequest(usingTranslationAPI: .translate, urlParams: urlParams) { (results) in
             guard let results = results else { completion(nil); return }

@@ -132,7 +132,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate{
         let node = SCNNode()
      
         return node
-    }
+   }
 */
     
     func session(_ session: ARSession, didFailWithError error: Error) {
