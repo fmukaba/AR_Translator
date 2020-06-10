@@ -65,44 +65,50 @@ class Settings: UIViewController, UITextViewDelegate, UIPickerViewDataSource, UI
 //    inputPicker.dataSource = self
 //    outputPicker.delegate = self
 //    outputPicker.dataSource = self
-    
+    inputPicker.selectRow(pickerData1.firstIndex(of: "English") ?? 0, inComponent: 0, animated: false)
+    outputPicker.selectRow(pickerData2.firstIndex(of: "French") ?? 0, inComponent: 0, animated: false)
     }
     
-    func copyIntoArray(){
-        for str in TranslationManager.shared.supportedLanguages{
-            let name=str.name ?? "Empty"
-            print("\(str.name!)\t\(str.code!)")
-            self.pickerData1.append(name)
-           // self.pickerData2.append(str.name ?? "")
-        }
-        
-        for eng in self.pickerData1{
-            print(eng)
-        }
-       // pickerData1.append("Detect Language")
-    }
 
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
       return 1
     }
 
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        if pickerView.tag == 1 {
-            if pickerData1[row] == "Detect Language" {
-                languageID()
-            }else{
-                self.detectLang.text = "Identified Language: "
-                codeFrom = pickerData1[row]
-                TranslationManager.shared.sourceLanguageCode=emptyDict[codeFrom]
-            }
-            //display()
-            return pickerData1[row]
-        } else {
-            codeTo = pickerData2[row]
-     TranslationManager.shared.targetLanguageCode=emptyDict[codeTo]
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        self.codeFrom = pickerData1[inputPicker.selectedRow(inComponent: 0)]
+        self.codeTo = pickerData2[outputPicker.selectedRow(inComponent: 0)]
+        //print(self.codeFrom)
+
+       // print(self.codeTo)
+
+        if codeFrom == "Detect Language"{
+
+            languageID()
+
+            setTarget()
+
+        }else{
+
+            setCodes()
+
+            self.detectLang.text = "Identified Language: "
+
         }
-        //display()
-        return pickerData2[row]
+    }
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+            if pickerView.tag == 1 {
+                return pickerData1[row]
+            }
+            return pickerData2[row]
+    }
+    
+    func setTarget(){
+        TranslationManager.shared.targetLanguageCode=emptyDict[codeTo]
+    }
+    
+    func setCodes(){
+        TranslationManager.shared.targetLanguageCode=emptyDict[codeTo]
+        TranslationManager.shared.sourceLanguageCode=emptyDict[codeFrom]
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
