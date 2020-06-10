@@ -93,8 +93,8 @@ class ImageBuilder
         // TranslationManager.shared.sourceLanguageCode = "en" // DEPRECIATED REMOVE WHEN MULUH'S CODE WORKS
         // TranslationManager.shared.targetLanguageCode = "de" // DEPRECIATED REMOVE WHEN MULUH'S CODE WORKS
         
-        print("FROM LANG: \(TranslationManager.shared.sourceLanguageCode)")
-        print("TO LANG: \(TranslationManager.shared.targetLanguageCode)")
+        print("FROM LANG: \(TranslationManager.shared.sourceLanguageCode!)")
+        print("TO LANG: \(TranslationManager.shared.targetLanguageCode!)")
         
         
         
