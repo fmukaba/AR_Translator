@@ -90,8 +90,12 @@ class ImageBuilder
         TranslationManager.shared.textToTranslate = text
         
         // input the languages to translate to/from
-        TranslationManager.shared.sourceLanguageCode = "en" // DEPRECIATED REMOVE WHEN MULUH'S CODE WORKS
-        TranslationManager.shared.targetLanguageCode = "de" // DEPRECIATED REMOVE WHEN MULUH'S CODE WORKS
+        // TranslationManager.shared.sourceLanguageCode = "en" // DEPRECIATED REMOVE WHEN MULUH'S CODE WORKS
+        // TranslationManager.shared.targetLanguageCode = "de" // DEPRECIATED REMOVE WHEN MULUH'S CODE WORKS
+        
+        print("FROM LANG: \(TranslationManager.shared.sourceLanguageCode)")
+        print("TO LANG: \(TranslationManager.shared.targetLanguageCode)")
+        
         
         
         // HOLY CODE - DO NOT TOUCH
