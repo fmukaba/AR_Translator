@@ -15,7 +15,6 @@ class Settings: UIViewController, UITextViewDelegate, UIPickerViewDataSource, UI
     var pickerData1: [String] = [String]()
     var pickerData2: [String] = [String]()
     
-    var text = ViewController.init().textDetected!
     
     @IBOutlet var detectLang: UILabel!
     @IBOutlet var outputPicker: UIPickerView!
@@ -114,6 +113,7 @@ class Settings: UIViewController, UITextViewDelegate, UIPickerViewDataSource, UI
     }
 
     func languageID(){
+        var text = "Love"
         languageId.identifyLanguage(for: text) { (languageCode, error) in
           if let error = error {
             self.output = "Failed with error: \(error)"
@@ -135,19 +135,6 @@ class Settings: UIViewController, UITextViewDelegate, UIPickerViewDataSource, UI
         }
     }
     
-    @IBAction func language() {
-        languageId.identifyLanguage(for: text) { (languageCode, error) in
-          if let error = error {
-            self.codeFrom = "Failed with error: \(error)"
-            return
-          }
-          if let languageCode = languageCode {
-            self.codeFrom = languageCode
-          } else {
-            self.codeFrom = "No language was identified"
-          }
-        }
-    }
     
     var emptyDict: [String: String]  = ["Afrikaans" : "af",
     "Albanian" : "sq",
