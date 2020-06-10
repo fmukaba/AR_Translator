@@ -22,6 +22,7 @@
 		C636127123D92479000A1F24 /* ARTranslator.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C636126F23D92479000A1F24 /* ARTranslator.xcdatamodeld */; };
 		C636127623D9247A000A1F24 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C636127423D9247A000A1F24 /* LaunchScreen.storyboard */; };
 		C636128123D9247B000A1F24 /* ARTranslatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C636128023D9247B000A1F24 /* ARTranslatorTests.swift */; };
+		C6845BA8249156F500F85DCA /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6845BA7249156F500F85DCA /* Settings.swift */; };
 		C6F2A6102462320A00333D67 /* UIUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F2A60F2462320A00333D67 /* UIUtilities.swift */; };
 		C6F2A6122462325800333D67 /* +UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F2A6112462325800333D67 /* +UIImage.swift */; };
 		C6F7F64F23DF8A6600630C91 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C6F7F64E23DF8A6600630C91 /* GoogleService-Info.plist */; };
@@ -63,6 +64,7 @@
 		C636127C23D9247B000A1F24 /* ARTranslatorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ARTranslatorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C636128023D9247B000A1F24 /* ARTranslatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARTranslatorTests.swift; sourceTree = "<group>"; };
 		C636128223D9247B000A1F24 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C6845BA7249156F500F85DCA /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		C6F2A60F2462320A00333D67 /* UIUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIUtilities.swift; sourceTree = "<group>"; };
 		C6F2A6112462325800333D67 /* +UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+UIImage.swift"; sourceTree = "<group>"; };
 		C6F7F64E23DF8A6600630C91 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				35D4F563247D9DB100E2A7C5 /* TranslationManager.swift */,
 				C636126623D92479000A1F24 /* AppDelegate.swift */,
 				C636126823D92479000A1F24 /* SceneDelegate.swift */,
+				C6845BA7249156F500F85DCA /* Settings.swift */,
 				C636126A23D92479000A1F24 /* ViewController.swift */,
 				20DDE5B6240B2FD200925265 /* avgColorGrabber.swift */,
 				C636126C23D92479000A1F24 /* Main.storyboard */,
@@ -354,6 +357,7 @@
 				C622222823F4A334003DF2B0 /* ARViewController.swift in Sources */,
 				35D4F566247D9DCA00E2A7C5 /* TranslationAPI.swift in Sources */,
 				C636127123D92479000A1F24 /* ARTranslator.xcdatamodeld in Sources */,
+				C6845BA8249156F500F85DCA /* Settings.swift in Sources */,
 				20DDE5B7240B2FD300925265 /* avgColorGrabber.swift in Sources */,
 				20491D6B248EC4A700D61A29 /* ImageBuilder.swift in Sources */,
 				C636126923D92479000A1F24 /* SceneDelegate.swift in Sources */,
@@ -522,14 +526,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 83DXAQWLN9;
+				DEVELOPMENT_TEAM = 57ZAM578YW;
 				INFOPLIST_FILE = ARTranslator/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.evanjohnson;
+				PRODUCT_BUNDLE_IDENTIFIER = com.canvas.fx;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -544,14 +548,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 83DXAQWLN9;
+				DEVELOPMENT_TEAM = 57ZAM578YW;
 				INFOPLIST_FILE = ARTranslator/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.evanjohnson;
+				PRODUCT_BUNDLE_IDENTIFIER = com.canvas.fx;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
