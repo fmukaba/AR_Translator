@@ -23,8 +23,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     
     let processor = ScaledElementProcessor()
     
-    
-    
     //ca layer
     var frameSublayer = CALayer()
     
@@ -41,6 +39,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 
 
     @IBAction func takePhoto(_ sender: Any) {
+        imageview.layer.sublayers?.removeAll()
+        
         imagePicker =  UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = .camera
@@ -86,10 +86,24 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         // imageview.layer.addSublayer(frameSublayer)
         // imageview.layer.addSublayer(textLayer)
         
+        if(TranslationManager.shared.sourceLanguageCode == nil)
+        {
+            TranslationManager.shared.sourceLanguageCode = "en"
+        }
+        if(TranslationManager.shared.targetLanguageCode == nil)
+        {
+            TranslationManager.shared.targetLanguageCode = "fr"
+        }
+        
+        
         if(imageview.image != nil)
         {
             let builder = ImageBuilder(imageView: imageview)
             builder.process()
+        }
+        else
+        {
+            print("DEBUG imageview.image == \(imageview.image) !")
         }
         
         // add textview here
